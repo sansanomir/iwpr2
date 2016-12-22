@@ -1,7 +1,4 @@
     <footer>
-        <p>
-            &copy; 2016 IW&amp;
-        </p>
         <?echo
             (copyright);
         ?>

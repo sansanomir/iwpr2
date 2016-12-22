@@ -6,7 +6,7 @@ defined('BASEPATH') OR exit('No direct script access allowed');
 ?>
 
     <main>
-        <h2>Bienvenido a code igniter</h2>
+        <?php echo $titulo;?>
         <?php
             $this->load->view('inc/menu.php');
         ?>

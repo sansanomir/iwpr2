@@ -6,9 +6,9 @@
     <link rel="stylesheet" type="text/css" href="<?php echo base_url();?>/assets/estilos.css">
 </head>
 <body>
-    
+
 <!--
 cabecera-->
     <header>
-        <h1> <?php echo $tituloH1; ?></h1>
+        <h1> <?php echo "tituloH1"; ?></h1>
     </header>
