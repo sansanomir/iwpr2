@@ -6,7 +6,7 @@ defined('BASEPATH') OR exit('No direct script access allowed');
 ?>
 
     <main>
-        <?php echo $titulo;?>
+        <h1><?php echo "$titulo";?></h1>
         <?php
             $this->load->view('inc/menu.php');
         ?>

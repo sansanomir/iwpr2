@@ -10,13 +10,13 @@ class Gestion extends CI_Controller {
       $this->load->library("Grocery_CRUD");
     }
 
-	public function index()
+	public function productos()
 	{
     $crud = new Grocery_CRUD();
     $crud->set_table("Producto");
     $crud->set_subject("Producto");
     $output = $crud->render();
-    $this->load->view('gestion/index', $output);
+    $this->load->view('gestion/productos', $output);
 	}
 
   public function categorias()

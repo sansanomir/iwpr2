@@ -8,6 +8,7 @@ $this->load->view('inc/capm.php');
 
     <main>
         <div>
+            <h1><?php echo "Productos";?></h1>
             <?php echo $output;?>
         </div>
 

@@ -6,6 +6,7 @@ defined('BASEPATH') OR exit('No direct script access allowed');
 ?>
 
     <main>
+      <h1><?php echo "Acerca de";?></h1>
         <ul>
             <li>Youchen Zhou</li>
             <li>Héctor Sansano</li>
