@@ -8,7 +8,7 @@ $this->load->view('inc/capm.php');
 
     <main>
         <div>
-          <h1><?php echo "Categorias";?></h1>
+            <h1><?php echo "Subcategorias";?></h1>
             <?php echo $output?>
         </div>
 

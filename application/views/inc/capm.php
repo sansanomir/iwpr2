@@ -10,7 +10,8 @@ foreach($css_files as $file): ?>
 <?php foreach($js_files as $file): ?>
 <script src="<?php echo $file; ?>"></script>
 <?php endforeach; ?>
-    <link rel="stylesheet" type="text/css" href="<?php echo base_url();?>/assets/estilos.css">
+<link rel="stylesheet" type="text/css" href="<?php echo base_url();?>/assets/css/bootstracp.min.css">
+
 
 </head>
 <body>

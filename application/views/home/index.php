@@ -10,6 +10,9 @@ defined('BASEPATH') OR exit('No direct script access allowed');
         <?php
             $this->load->view('inc/menu.php');
         ?>
+        <?php
+            $this->load->view('publica/principal.php');
+         ?>
 
     </main>
 <?php
