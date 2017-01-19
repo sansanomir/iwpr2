@@ -4,17 +4,17 @@
   <!--class="form" role="form">-->
   <?php echo validation_errors(); ?>
    <?php echo form_open('verifylogin'); ?>
-  	<div class=form-group><label for="user" class="form-label"> User: </label>
+  	<div class=form-group><label for="username" class="form-label"> User: </label>
   		<span class="obligatorio">(*)</span>
   		<input type="text" name="user" "required size=25"
   			maxlength="200" placeholder="User" id="username"
-  			class="form-control"/ required>
+  			class="form-control"/>
   	</div>
-    <div class=form-group><label for="contrasena1" class="form-label"> Contraseña: </label>
+    <div class=form-group><label for="password" class="form-label"> Contraseña: </label>
   		<span class="obligatorio">(*)</span>
-  		<input type="password" name="contrasena1" "required size=25"
+  		<input type="password" name="'password'" "required size=25"
   			maxlength="200" placeholder="****" id="password"
-  			class="form-control"/ required>
+  			class="form-control"/>
   	</div>
   	<input type="submit" class="btn btn-primary" value="Login" id="btnEnviar">
   </form>
