@@ -13,7 +13,7 @@ class Gestion extends CI_Controller {
 	public function productos()
 	{
     $crud = new Grocery_CRUD();
-    $crud->set_table("Producto");
+    $crud->set_table("producto");
     $crud->set_subject("Producto");
     $output = $crud->render();
     $this->load->view('gestion/productos', $output);
@@ -22,7 +22,7 @@ class Gestion extends CI_Controller {
   public function categorias()
 	{
     $crud = new Grocery_CRUD();
-    $crud->set_table("Categoria");
+    $crud->set_table("categoria");
     $crud->set_subject("Categoria");
     $output = $crud->render();
     $this->load->view('gestion/categorias', $output);
@@ -31,7 +31,7 @@ class Gestion extends CI_Controller {
   public function opiniones()
 	{
     $crud = new Grocery_CRUD();
-    $crud->set_table("Opinion");
+    $crud->set_table("opinion");
     $crud->set_subject("Opinion");
     $output = $crud->render();
     $this->load->view('gestion/opiniones', $output);

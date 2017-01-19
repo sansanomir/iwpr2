@@ -3,7 +3,7 @@
 -- http://www.phpmyadmin.net
 --
 -- Host: localhost
--- Generation Time: Dec 22, 2016 at 07:12 PM
+-- Generation Time: Jan 19, 2017 at 08:43 AM
 -- Server version: 10.1.19-MariaDB
 -- PHP Version: 5.5.38
 
@@ -23,19 +23,19 @@ SET time_zone = "+00:00";
 -- --------------------------------------------------------
 
 --
--- Table structure for table `Categoria`
+-- Table structure for table `categoria`
 --
 
-CREATE TABLE `Categoria` (
+CREATE TABLE `categoria` (
   `oid` int(11) NOT NULL,
   `nombre` varchar(200) COLLATE utf8_bin NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_bin;
 
 --
--- Dumping data for table `Categoria`
+-- Dumping data for table `categoria`
 --
 
-INSERT INTO `Categoria` (`oid`, `nombre`) VALUES
+INSERT INTO `categoria` (`oid`, `nombre`) VALUES
 (1, 'Portátiles'),
 (2, 'Teclados'),
 (3, 'Ratones');
@@ -43,10 +43,10 @@ INSERT INTO `Categoria` (`oid`, `nombre`) VALUES
 -- --------------------------------------------------------
 
 --
--- Table structure for table `Imagenes`
+-- Table structure for table `imagenes`
 --
 
-CREATE TABLE `Imagenes` (
+CREATE TABLE `imagenes` (
   `oid` int(11) NOT NULL,
   `ruta` varchar(200) COLLATE utf8_bin NOT NULL,
   `descripcion` varchar(200) COLLATE utf8_bin NOT NULL,
@@ -56,10 +56,10 @@ CREATE TABLE `Imagenes` (
 -- --------------------------------------------------------
 
 --
--- Table structure for table `LineaPedido`
+-- Table structure for table `lineapedido`
 --
 
-CREATE TABLE `LineaPedido` (
+CREATE TABLE `lineapedido` (
   `oid` int(11) NOT NULL,
   `cantidad` int(11) NOT NULL,
   `precio` float NOT NULL,
@@ -70,48 +70,48 @@ CREATE TABLE `LineaPedido` (
 -- --------------------------------------------------------
 
 --
--- Table structure for table `Marcas`
+-- Table structure for table `marcas`
 --
 
-CREATE TABLE `Marcas` (
+CREATE TABLE `marcas` (
   `oid` int(11) NOT NULL,
   `nombre` varchar(200) COLLATE utf8_bin NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_bin;
 
 --
--- Dumping data for table `Marcas`
+-- Dumping data for table `marcas`
 --
 
-INSERT INTO `Marcas` (`oid`, `nombre`) VALUES
+INSERT INTO `marcas` (`oid`, `nombre`) VALUES
 (1, 'Apple'),
 (2, 'Lenovo');
 
 -- --------------------------------------------------------
 
 --
--- Table structure for table `Oferta`
+-- Table structure for table `oferta`
 --
 
-CREATE TABLE `Oferta` (
+CREATE TABLE `oferta` (
   `oid` int(11) NOT NULL,
   `fechaInicio` varchar(200) COLLATE utf8_bin NOT NULL,
   `fechaFil` varchar(200) COLLATE utf8_bin NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_bin;
 
 --
--- Dumping data for table `Oferta`
+-- Dumping data for table `oferta`
 --
 
-INSERT INTO `Oferta` (`oid`, `fechaInicio`, `fechaFil`) VALUES
+INSERT INTO `oferta` (`oid`, `fechaInicio`, `fechaFil`) VALUES
 (0, '1234', '1234');
 
 -- --------------------------------------------------------
 
 --
--- Table structure for table `Opinion`
+-- Table structure for table `opinion`
 --
 
-CREATE TABLE `Opinion` (
+CREATE TABLE `opinion` (
   `oid` int(11) NOT NULL,
   `comentario` varchar(100) COLLATE utf8_bin NOT NULL,
   `useroid` int(11) NOT NULL,
@@ -121,10 +121,10 @@ CREATE TABLE `Opinion` (
 -- --------------------------------------------------------
 
 --
--- Table structure for table `Producto`
+-- Table structure for table `producto`
 --
 
-CREATE TABLE `Producto` (
+CREATE TABLE `producto` (
   `oid` int(11) NOT NULL,
   `nombre` varchar(50) COLLATE utf8_bin NOT NULL,
   `descripcion` varchar(200) COLLATE utf8_bin NOT NULL,
@@ -136,39 +136,39 @@ CREATE TABLE `Producto` (
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_bin;
 
 --
--- Dumping data for table `Producto`
+-- Dumping data for table `producto`
 --
 
-INSERT INTO `Producto` (`oid`, `nombre`, `descripcion`, `precio`, `stock`, `subcategoriaoid`, `marcasoid`, `ofertaoid`) VALUES
+INSERT INTO `producto` (`oid`, `nombre`, `descripcion`, `precio`, `stock`, `subcategoriaoid`, `marcasoid`, `ofertaoid`) VALUES
 (1, 'Macbook', '7.1', '34', 45, 0, 0, 0),
 (2, 'LEnovo thinkpad', 'dfgfagfa', '34', 34, 1, 0, 0);
 
 -- --------------------------------------------------------
 
 --
--- Table structure for table `Subcategoria`
+-- Table structure for table `subcategoria`
 --
 
-CREATE TABLE `Subcategoria` (
+CREATE TABLE `subcategoria` (
   `oid` int(11) NOT NULL,
   `nombre` varchar(200) COLLATE utf8_bin NOT NULL,
   `categoriaoid` int(11) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_bin;
 
 --
--- Dumping data for table `Subcategoria`
+-- Dumping data for table `subcategoria`
 --
 
-INSERT INTO `Subcategoria` (`oid`, `nombre`, `categoriaoid`) VALUES
+INSERT INTO `subcategoria` (`oid`, `nombre`, `categoriaoid`) VALUES
 (1, 'Netbook', 1);
 
 -- --------------------------------------------------------
 
 --
--- Table structure for table `User`
+-- Table structure for table `user`
 --
 
-CREATE TABLE `User` (
+CREATE TABLE `user` (
   `oid` int(11) NOT NULL,
   `userName` varchar(50) COLLATE utf8_bin NOT NULL,
   `password` varchar(50) COLLATE utf8_bin NOT NULL,
@@ -180,10 +180,10 @@ CREATE TABLE `User` (
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_bin;
 
 --
--- Dumping data for table `User`
+-- Dumping data for table `user`
 --
 
-INSERT INTO `User` (`oid`, `userName`, `password`, `nombre`, `email`, `direccion`, `cuenta`, `carrooid`) VALUES
+INSERT INTO `user` (`oid`, `userName`, `password`, `nombre`, `email`, `direccion`, `cuenta`, `carrooid`) VALUES
 (1, 'hsm', 'hsm', 'Héctor', 'hsm5@gmail.com', 'C/Eduardo Ferrandez', '325412531', NULL);
 
 --
@@ -191,51 +191,51 @@ INSERT INTO `User` (`oid`, `userName`, `password`, `nombre`, `email`, `direccion
 --
 
 --
--- Indexes for table `Categoria`
+-- Indexes for table `categoria`
 --
-ALTER TABLE `Categoria`
+ALTER TABLE `categoria`
   ADD PRIMARY KEY (`oid`);
 
 --
--- Indexes for table `Imagenes`
+-- Indexes for table `imagenes`
 --
-ALTER TABLE `Imagenes`
+ALTER TABLE `imagenes`
   ADD PRIMARY KEY (`oid`);
 
 --
--- Indexes for table `LineaPedido`
+-- Indexes for table `lineapedido`
 --
-ALTER TABLE `LineaPedido`
+ALTER TABLE `lineapedido`
   ADD PRIMARY KEY (`oid`);
 
 --
--- Indexes for table `Marcas`
+-- Indexes for table `marcas`
 --
-ALTER TABLE `Marcas`
+ALTER TABLE `marcas`
   ADD PRIMARY KEY (`oid`);
 
 --
--- Indexes for table `Opinion`
+-- Indexes for table `opinion`
 --
-ALTER TABLE `Opinion`
+ALTER TABLE `opinion`
   ADD PRIMARY KEY (`oid`);
 
 --
--- Indexes for table `Producto`
+-- Indexes for table `producto`
 --
-ALTER TABLE `Producto`
+ALTER TABLE `producto`
   ADD PRIMARY KEY (`oid`);
 
 --
--- Indexes for table `Subcategoria`
+-- Indexes for table `subcategoria`
 --
-ALTER TABLE `Subcategoria`
+ALTER TABLE `subcategoria`
   ADD PRIMARY KEY (`oid`);
 
 --
--- Indexes for table `User`
+-- Indexes for table `user`
 --
-ALTER TABLE `User`
+ALTER TABLE `user`
   ADD PRIMARY KEY (`oid`);
 
 --
@@ -243,45 +243,60 @@ ALTER TABLE `User`
 --
 
 --
--- AUTO_INCREMENT for table `Categoria`
+-- AUTO_INCREMENT for table `categoria`
 --
-ALTER TABLE `Categoria`
+ALTER TABLE `categoria`
   MODIFY `oid` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=4;
 --
--- AUTO_INCREMENT for table `Imagenes`
+-- AUTO_INCREMENT for table `imagenes`
 --
-ALTER TABLE `Imagenes`
+ALTER TABLE `imagenes`
   MODIFY `oid` int(11) NOT NULL AUTO_INCREMENT;
 --
--- AUTO_INCREMENT for table `LineaPedido`
+-- AUTO_INCREMENT for table `lineapedido`
 --
-ALTER TABLE `LineaPedido`
+ALTER TABLE `lineapedido`
   MODIFY `oid` int(11) NOT NULL AUTO_INCREMENT;
 --
--- AUTO_INCREMENT for table `Marcas`
+-- AUTO_INCREMENT for table `marcas`
 --
-ALTER TABLE `Marcas`
+ALTER TABLE `marcas`
   MODIFY `oid` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=3;
 --
--- AUTO_INCREMENT for table `Opinion`
+-- AUTO_INCREMENT for table `opinion`
 --
-ALTER TABLE `Opinion`
+ALTER TABLE `opinion`
   MODIFY `oid` int(11) NOT NULL AUTO_INCREMENT;
 --
--- AUTO_INCREMENT for table `Producto`
+-- AUTO_INCREMENT for table `producto`
 --
-ALTER TABLE `Producto`
+ALTER TABLE `producto`
   MODIFY `oid` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=3;
 --
--- AUTO_INCREMENT for table `Subcategoria`
+-- AUTO_INCREMENT for table `subcategoria`
 --
-ALTER TABLE `Subcategoria`
+ALTER TABLE `subcategoria`
   MODIFY `oid` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=2;
 --
--- AUTO_INCREMENT for table `User`
+-- AUTO_INCREMENT for table `user`
 --
-ALTER TABLE `User`
+ALTER TABLE `user`
   MODIFY `oid` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=2;
 /*!40101 SET CHARACTER_SET_CLIENT=@OLD_CHARACTER_SET_CLIENT */;
 /*!40101 SET CHARACTER_SET_RESULTS=@OLD_CHARACTER_SET_RESULTS */;
 /*!40101 SET COLLATION_CONNECTION=@OLD_COLLATION_CONNECTION */;
+
+
+
+# Privileges for `pccomponentes`@`%`
+
+GRANT USAGE ON *.* TO 'pccomponentes'@'%' IDENTIFIED BY PASSWORD '*A4B6157319038724E3560894F7F932C8886EBFCF';
+
+GRANT ALL PRIVILEGES ON `pccomponentes`.* TO 'pccomponentes'@'%';
+
+
+# Privileges for `pccomponentes`@`localhost`
+
+GRANT USAGE ON *.* TO 'pccomponentes'@'localhost' IDENTIFIED BY PASSWORD '*A4B6157319038724E3560894F7F932C8886EBFCF';
+
+GRANT ALL PRIVILEGES ON `pccomponentes`.* TO 'pccomponentes'@'localhost';
