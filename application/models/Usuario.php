@@ -3,7 +3,7 @@ defined('BASEPATH') OR exit('No direct script access allowed');
 
 class Usuario extends CI_Model {
   function login($username, $password){
-     $this -> db -> select('oid, userName, password');
+     $this -> db -> select('oid, userName, password, nombre, email, direccion, cuenta, carrooid');
      $this -> db -> from('user');
      $this -> db -> where('userName', $username);
      $this -> db -> where('password', MD5($password));

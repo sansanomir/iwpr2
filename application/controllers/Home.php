@@ -7,28 +7,27 @@ class Home extends CI_Controller {
 		parent::__construct();
 	}
 	public function index(){
-		if($this->session->userdata('logged_in'))
-		{
-			 $session_data = $this->session->userdata('logged_in');
-			 $data['username'] = $session_data['username'];
-			 $this->load->view('publica/principal.php', $data);
+		if($this->session->userdata('logged_in')){
+		 $session_data = $this->session->userdata('logged_in');
+		 $data['username'] = $session_data['username'];
+		 if($session_data['username'] == "admin")
+			$this->load->view('home/index');
+		 else
+		 	$this->load->view('publica/principal', $data);
 		}
-		else
-		{
-			 //If no session, redirect to login page
-
-			 //Si no está logueado....
-			 //redirect('login', 'refresh');
+		else{
+			 $data['username'] = "invitado";
+			 $this->load->view('publica/principal', $data);
 		}
-		$data["titulo"] = "PCComponentes";
-		$this->load->view('home/index', $data);
 	}
-	public function logout()
-	 {
-	   $this->session->unset_userdata('logged_in');
-	   session_destroy();
-	   redirect('home', 'refresh');
-	 }
+	public function logout(){
+		$this->session->unset_userdata('logged_in');
+		session_destroy();
+		redirect('home', 'refresh');
+	}
+	public function registro(){
+		$this->load->view('publica/registro_view');
+	}
 	public function usuarios(){
 		$data["titulo"] = "Usuarios";
 		$this->load->view('gestion/usuarios', $data);

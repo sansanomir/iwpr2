@@ -6,14 +6,10 @@ defined('BASEPATH') OR exit('No direct script access allowed');
 ?>
 
     <main>
-        <h1><?php echo "$titulo";?></h1>
+        <h1><?php echo "Administrador";?></h1>
         <?php
             $this->load->view('inc/menu.php');
         ?>
-        <?php
-            $this->load->view('publica/principal.php');
-         ?>
-
     </main>
 <?php
     $this->load->view('inc/pie.php');

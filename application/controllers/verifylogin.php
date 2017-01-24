@@ -18,9 +18,31 @@ class VerifyLogin extends CI_Controller {
      }
      else {
        $result = $this->Usuario->login($nombre, $contra);
-       if($result)
-       {
-         $this->load->view('publica/principal.php');
+       if($result){
+         $sess_array = array();
+         foreach($result as $row)
+         {
+           $sess_array = array(
+             'oid' => $row->oid,
+             'username' => $row->userName,
+             'password' => $row->password,
+             'nombre' => $row->nombre,
+             'email' => $row->email,
+             'oid' => $row->direccion,
+             'cuenta' => $row->cuenta,
+             'carrooid' => $row->carrooid,
+           );
+           $this->session->set_userdata('logged_in', $sess_array);
+         }
+         $session_data = $this->session->userdata('logged_in');
+         if($session_data['username']== "admin"){
+           $this->load->view('home/index');
+         }
+         else{
+           $data['username'] = $session_data['username'];
+           $this->load->view('publica/principal.php',$data);
+           return true;
+         }
          /*$sess_array = array();
          foreach($result as $row)
          {
