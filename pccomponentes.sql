@@ -3,7 +3,7 @@
 -- http://www.phpmyadmin.net
 --
 -- Host: localhost
--- Generation Time: Jan 19, 2017 at 08:43 AM
+-- Generation Time: Jan 24, 2017 at 08:35 PM
 -- Server version: 10.1.19-MariaDB
 -- PHP Version: 5.5.38
 
@@ -23,6 +23,17 @@ SET time_zone = "+00:00";
 -- --------------------------------------------------------
 
 --
+-- Table structure for table `carro`
+--
+
+CREATE TABLE `carro` (
+  `oid` int(11) NOT NULL,
+  `useroid` int(11) NOT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_bin;
+
+-- --------------------------------------------------------
+
+--
 -- Table structure for table `categoria`
 --
 
@@ -36,9 +47,13 @@ CREATE TABLE `categoria` (
 --
 
 INSERT INTO `categoria` (`oid`, `nombre`) VALUES
+(10, 'Altavoces'),
+(4, 'Computadores'),
+(12, 'Inalámbrico'),
+(20, 'Nueva'),
 (1, 'Portátiles'),
-(2, 'Teclados'),
-(3, 'Ratones');
+(3, 'Ratones'),
+(2, 'Teclados');
 
 -- --------------------------------------------------------
 
@@ -64,7 +79,8 @@ CREATE TABLE `lineapedido` (
   `cantidad` int(11) NOT NULL,
   `precio` float NOT NULL,
   `precioTotal` float NOT NULL,
-  `productooid` int(11) NOT NULL
+  `productooid` int(11) NOT NULL,
+  `carrooid` int(11) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_bin;
 
 -- --------------------------------------------------------
@@ -160,7 +176,10 @@ CREATE TABLE `subcategoria` (
 --
 
 INSERT INTO `subcategoria` (`oid`, `nombre`, `categoriaoid`) VALUES
-(1, 'Netbook', 1);
+(1, 'Netbook', 1),
+(2, 'Macbook', 1),
+(3, 'Gamming', 3),
+(4, 'Stereo', 10);
 
 -- --------------------------------------------------------
 
@@ -184,17 +203,29 @@ CREATE TABLE `user` (
 --
 
 INSERT INTO `user` (`oid`, `userName`, `password`, `nombre`, `email`, `direccion`, `cuenta`, `carrooid`) VALUES
-(1, 'hsm', 'hsm', 'Héctor', 'hsm5@gmail.com', 'C/Eduardo Ferrandez', '325412531', NULL);
+(2, 'pep', 'pep', 'pep', 'pep', 'pep', 'pep', NULL),
+(4, 'pepe', 'pepe', 'lmsadml', 'mlfdaslm', 'dfasm', 'fdasm', NULL),
+(6, 'juan', 'a94652aa97c7211ba8954dd15a3cf838', 'Juanito', 'juanito@gmail.com', 'Calle roja', '1324', NULL),
+(7, 'hsm', '75bc08308363144baf3b29af7c580e0b', 'Héctor Sansano', 'sansanomiralles@gmail.com', 'Calle roja', '9123', NULL),
+(8, 'admin', '21232f297a57a5a743894a0e4a801fc3', 'Administrador', 'admin@pccomponentes.com', 'Calle amarilla', '452345623', NULL),
+(9, '', 'd41d8cd98f00b204e9800998ecf8427e', '', '', '', '', NULL);
 
 --
 -- Indexes for dumped tables
 --
 
 --
+-- Indexes for table `carro`
+--
+ALTER TABLE `carro`
+  ADD PRIMARY KEY (`oid`);
+
+--
 -- Indexes for table `categoria`
 --
 ALTER TABLE `categoria`
-  ADD PRIMARY KEY (`oid`);
+  ADD PRIMARY KEY (`oid`),
+  ADD UNIQUE KEY `nombre` (`nombre`);
 
 --
 -- Indexes for table `imagenes`
@@ -243,10 +274,15 @@ ALTER TABLE `user`
 --
 
 --
+-- AUTO_INCREMENT for table `carro`
+--
+ALTER TABLE `carro`
+  MODIFY `oid` int(11) NOT NULL AUTO_INCREMENT;
+--
 -- AUTO_INCREMENT for table `categoria`
 --
 ALTER TABLE `categoria`
-  MODIFY `oid` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=4;
+  MODIFY `oid` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=21;
 --
 -- AUTO_INCREMENT for table `imagenes`
 --
@@ -276,27 +312,12 @@ ALTER TABLE `producto`
 -- AUTO_INCREMENT for table `subcategoria`
 --
 ALTER TABLE `subcategoria`
-  MODIFY `oid` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=2;
+  MODIFY `oid` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=5;
 --
 -- AUTO_INCREMENT for table `user`
 --
 ALTER TABLE `user`
-  MODIFY `oid` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=2;
+  MODIFY `oid` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=10;
 /*!40101 SET CHARACTER_SET_CLIENT=@OLD_CHARACTER_SET_CLIENT */;
 /*!40101 SET CHARACTER_SET_RESULTS=@OLD_CHARACTER_SET_RESULTS */;
 /*!40101 SET COLLATION_CONNECTION=@OLD_COLLATION_CONNECTION */;
-
-
-
-# Privileges for `pccomponentes`@`%`
-
-GRANT USAGE ON *.* TO 'pccomponentes'@'%' IDENTIFIED BY PASSWORD '*A4B6157319038724E3560894F7F932C8886EBFCF';
-
-GRANT ALL PRIVILEGES ON `pccomponentes`.* TO 'pccomponentes'@'%';
-
-
-# Privileges for `pccomponentes`@`localhost`
-
-GRANT USAGE ON *.* TO 'pccomponentes'@'localhost' IDENTIFIED BY PASSWORD '*A4B6157319038724E3560894F7F932C8886EBFCF';
-
-GRANT ALL PRIVILEGES ON `pccomponentes`.* TO 'pccomponentes'@'localhost';
