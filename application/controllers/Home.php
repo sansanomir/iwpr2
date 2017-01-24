@@ -25,6 +25,15 @@ class Home extends CI_Controller {
 		session_destroy();
 		redirect('home', 'refresh');
 	}
+	public function misdatos(){
+		if($this->session->userdata('logged_in')){
+		 $session_data = $this->session->userdata('logged_in');
+		 $data['username'] = $session_data['username'];
+		 if($session_data['username'] != "admin"){
+			 $this->load->view('privada/mis_datos', $data);
+		 }
+		}
+	}
 	public function registro(){
 		$this->load->view('publica/registro_view');
 	}

@@ -35,5 +35,28 @@ class Usuario extends CI_Model {
       return true;
     }
   }
+  function modificaDatos($username,$password,$nombre,$email,$direccion,$cuenta){
+    $data = array();
+    $oid;
+    $this -> db -> select('oid, userName, password, nombre, email, direccion, cuenta, carrooid');
+    $this -> db -> from('user');
+    $this -> db -> where('userName', $username);
+    $query = $this -> db -> get();
+    $result = $query->result();
+    foreach($result as $row)
+        $oid = $row->oid;
+    if($query -> num_rows() == 1)
+      $data = array(
+        'userName' => $username ,
+        'password' => MD5($password) ,
+        'nombre' => $nombre,
+        'email' => $email ,
+        'direccion' => $direccion ,
+        'cuenta' => $cuenta
+    );
+    $this->db->where('oid',$oid);
+    $this->db->update('user',$data);
+    return true;
+  }
 }
 ?>

@@ -18,18 +18,30 @@ class Registro extends CI_Controller {
         $direccion = $this->input->post('direccion');
         $cuenta = $this->input->post('cuenta');
 
-        if(strcmp($contra1,$contra2)==0){
-          if($this->Usuario->registro($username,$contra1,$nombre,$email,$direccion,$cuenta)){
-              $this->load->view('publica/login_view.php');
+        if($this->input->post('boton') == "modificar"){
+          if(strcmp($contra1,$contra2)==0){
+            $session_data = $this->session->userdata('logged_in');
+            $data['username'] = $session_data['username'];
+            if($this->Usuario->modificaDatos($session_data['username'],$contra1,$nombre,$email,$direccion,$cuenta))
+              $session_data = $this->session->userdata('logged_in');
+       		    $data['username'] = $session_data['username'];
+              $this->load->view('privada/mis_datos.php',$data);
+          }
+        }
+        else if ($this->input->post('boton') == "Registro"){
+          if(strcmp($contra1,$contra2)==0){
+            if($this->Usuario->registro($username,$contra1,$nombre,$email,$direccion,$cuenta)){
+                $this->load->view('publica/login_view.php');
+            }
+            else{
+              //Ya existe el user
+              $this->load->view('publica/registro_view.php');
+            }
+
           }
           else{
-            //Ya existe el user
             $this->load->view('publica/registro_view.php');
           }
-
-        }
-        else{
-          $this->load->view('publica/registro_view.php');
         }
       }
   }
