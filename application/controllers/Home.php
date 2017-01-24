@@ -5,8 +5,10 @@ class Home extends CI_Controller {
 	function __construct()
 	{
 		parent::__construct();
+		$this->load->model('Producto','',TRUE);
 	}
 	public function index(){
+		$data['producto'] = $this->Producto->listaProductos();
 		if($this->session->userdata('logged_in')){
 		 $session_data = $this->session->userdata('logged_in');
 		 $data['username'] = $session_data['username'];
@@ -19,7 +21,9 @@ class Home extends CI_Controller {
 			 $data['username'] = "invitado";
 			 $this->load->view('publica/principal', $data);
 		}
+
 	}
+
 	public function logout(){
 		$this->session->unset_userdata('logged_in');
 		session_destroy();
