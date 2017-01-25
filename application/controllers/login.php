@@ -17,7 +17,8 @@ class Login extends CI_Controller {
             $this->load->view('home/index');
           }
           else{
-            $this->load->view('publica/principal', $data);
+            //$this->load->view('publica/principal', $data);
+            redirect('home/index','refresh');
           }
         }
         else{

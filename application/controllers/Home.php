@@ -11,6 +11,8 @@ class Home extends CI_Controller {
 
 	public function index(){
 		$data['producto'] = $this->Producto->listaProductos();
+		$data['direccion'] = "http://localhost:8080/pccomponentes/index.php/home/producto/";
+		$data['direccionAdd'] = "http://localhost:8080/pccomponentes/index.php/home/addCarro/";
 		if($this->session->userdata('logged_in')){
 		 $session_data = $this->session->userdata('logged_in');
 		 $data['username'] = $session_data['username'];
@@ -32,20 +34,19 @@ class Home extends CI_Controller {
 
 	}
 	public function producto($oid){
-		
 		$producto = $this->Producto->getProductoByOid($oid);
 		$data['producto'] = $producto[0];
 		$marcasoid = $data['producto']->marcasoid;
 		$marca = $this->Marca->getMarcaByOid($marcasoid);
 		$data['marca'] = $marca[0];
-
+		$data['direccion'] = "http://localhost:8080/pccomponentes/index.php/home/addCarro/".$oid;
 		$this->load->view('publica/producto', $data);
 
 	}
 	public function logout(){
 		$this->session->unset_userdata('logged_in');
 		session_destroy();
-		redirect('home', 'refresh');
+		redirect('home');
 	}
 	public function misdatos(){
 		if($this->session->userdata('logged_in')){
@@ -59,7 +60,8 @@ class Home extends CI_Controller {
 			$data['producto'] = $this->Producto->listaProductos();
 			$data['username'] = "invitado";
 			$data['carro'] = $this->Producto->getProductosCarrito("invitado",2);
-			$this->load->view('publica/principal', $data);
+			//$this->load->view('publica/principal', $data);
+			redirect('home');
 		}
 	}
 	public function registro(){

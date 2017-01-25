@@ -16,8 +16,9 @@
 		<?php foreach ($producto as $prod): ?>
 
 		    <li class="list-group-item">
-		        <a href="index.php/home/producto/<?php echo $prod->oid; ?>"><?php echo $prod->oid."  ".$prod->nombre ."  " .$prod->precio; ?></a>
-	          <input type="button" value="comprar" onclick="location.href='index.php/home/addCarro/<?php echo $prod->oid;?>'" />
+		        <a href=<?php echo $direccion.$prod->oid; ?>"><?php echo $prod->oid."  ".$prod->nombre ."  " .$prod->precio; ?></a>
+            <br>
+            <a href=<?php echo $direccionAdd.$prod->oid; ?>"> Añadir al carrito </a>
 		    </li>
 
 		<?php endforeach; ?>

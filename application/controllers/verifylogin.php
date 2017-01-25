@@ -43,7 +43,8 @@ class VerifyLogin extends CI_Controller {
            $data['producto'] = $this->Producto->listaProductos();
            $data['username'] = $session_data['username'];
            $data['carro'] = $this->Producto->getProductosCarrito($session_data['username'],$session_data['carrooid']);
-           $this->load->view('publica/principal.php',$data);
+           redirect('home','refresh');
+           //$this->load->view('publica/principal.php',$data);
            return true;
          }
        }
