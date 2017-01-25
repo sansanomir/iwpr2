@@ -22,6 +22,7 @@ class Home extends CI_Controller {
 		}
 		else{
 			 $data['username'] = "invitado";
+			 $data['carro'] = $this->Producto->getProductosCarrito("invitado",2);
 			 $this->load->view('publica/principal', $data);
 		}
 	}
@@ -38,6 +39,12 @@ class Home extends CI_Controller {
 		 if($session_data['username'] != "admin"){
 			 $this->load->view('privada/mis_datos', $data);
 		 }
+		}
+		else{
+			$data['producto'] = $this->Producto->listaProductos();
+			$data['username'] = "invitado";
+			$data['carro'] = $this->Producto->getProductosCarrito("invitado",2);
+			$this->load->view('publica/principal', $data);
 		}
 	}
 	public function registro(){
