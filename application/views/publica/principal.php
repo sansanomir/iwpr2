@@ -8,10 +8,15 @@
   <?php echo anchor('home/registro','Registro','title="Registro"'); ?>
   <?php echo anchor('home/misdatos','Mis datos','title="Mis datos"'); ?>
   <br>
-  <ul>
-  <?php foreach ($producto as $prod) {
-  		echo "<li>Producto " .$prod->oid  ." Nombre "  .$prod->nombre ." Descripción " .$prod->descripcion ." Stock " .$prod->stock ."</li><br>";
 
-  	} ?>
+  <ul>
+	<?php foreach ($producto as $prod): ?>
+
+	    <li>
+	        <a href="/producto/<?php echo $prod->oid; ?>"><?php echo $prod->nombre ."  " .$prod->precio;  ?></a>
+	    </li>
+
+	<?php endforeach; ?>
   </ul>
+
 </main>
