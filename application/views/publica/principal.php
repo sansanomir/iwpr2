@@ -10,14 +10,17 @@
   <br>
 
   <ul>
+  <form action="home/addCarro">
 	<?php foreach ($producto as $prod): ?>
 
 	    <li>
-	        <a href="/producto/<?php echo $prod->oid; ?>"><?php echo $prod->nombre ."  " .$prod->precio;  ?></a>
+	        <a href="index.php/home/producto/<?php echo $prod->oid; ?>"><?php echo $prod->oid."  ".$prod->nombre ."  " .$prod->precio; ?></a>
+          <input type="button" value="comprar" onclick="location.href='index.php/home/addCarro/<?php echo $prod->oid;?>'" />
 	    </li>
 
 	<?php endforeach; ?>
   </ul>
+  </form>
 <h4>Carrito</h4>
 <?php for ($x = 0; $x<count($carro); $x++): ?>
 

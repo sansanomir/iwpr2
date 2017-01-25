@@ -26,7 +26,14 @@ class Home extends CI_Controller {
 			 $this->load->view('publica/principal', $data);
 		}
 	}
+	public function addCarro($oid){
+		echo $oid;
 
+	}
+	public function producto($oid){
+		echo $oid."PRoducti";
+
+	}
 	public function logout(){
 		$this->session->unset_userdata('logged_in');
 		session_destroy();
