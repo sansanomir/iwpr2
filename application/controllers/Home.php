@@ -19,7 +19,7 @@ class Home extends CI_Controller {
 		 if($session_data['username'] == "admin")
 			$this->load->view('home/index');
 			else{
-				$data['carro'] = $this->Producto->getProductosCarrito($session_data['username'],$session_data['carrooid']);
+				$data['carro'] = $this->Producto->getProductosCarrito($session_data['username']);
 		 		$this->load->view('publica/principal', $data);
 			}
 		}
@@ -30,8 +30,10 @@ class Home extends CI_Controller {
 		}
 	}
 	public function addCarro($oid){
-		echo $oid;
-
+		if($this->session->userdata('logged_in')){
+		 	$session_data = $this->session->userdata('logged_in');
+			$this->Producto->anyadirAlCarro($oid,1,$session_data['username']);
+		}
 	}
 	public function producto($oid){
 		$producto = $this->Producto->getProductoByOid($oid);
@@ -41,7 +43,6 @@ class Home extends CI_Controller {
 		$data['marca'] = $marca[0];
 		$data['direccion'] = "http://localhost:8080/pccomponentes/index.php/home/addCarro/".$oid;
 		$this->load->view('publica/producto', $data);
-
 	}
 	public function logout(){
 		$this->session->unset_userdata('logged_in');

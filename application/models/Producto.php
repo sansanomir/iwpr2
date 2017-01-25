@@ -24,18 +24,46 @@ class Producto extends CI_Model {
        return false;
   }
 
-  function anyadirAlCarro($productooid,$cantidad){
-    $this -> db -> select('oid, cantidad, productooid');
+  function anyadirAlCarro($productooid,$cantidad,$username){
+    echo $productooid;
+    $identificadorUsuario;
+    $this -> db -> select('oid, userName, carrooid');
+    $this -> db -> from('user');
+    $this -> db -> where('userName', $username);
+    $query = $this -> db -> get();
+    $result = $query->result();
+    foreach($result as $row){
+      $identificadorCarro = $row->carrooid;
+      $identificadorUsuario = $row->oid;
+    }
+    if($identificadorCarro == null){
+      //creamos carrito para el usuario
+      $data = array(
+        'useroid' => $identificadorUsuario ,
+      );
+      $this->db->insert('carro',$data);
+      $this -> db -> select('oid, useroid');
+      $this -> db -> from('carro');
+      $this -> db -> where('useroid', $identificadorUsuario);
+      $query = $this -> db -> get();
+      foreach($result as $row){
+        $identificadorCarro = $row->oid;
+      }
+    }
+
+    $this -> db -> select('oid, cantidad, productooid, carrooid');
     $this -> db -> from('lineapedido');
     $this -> db -> where('productooid', $productooid);
+    $this -> db -> where('carrooid', $identificadorCarro);
     $query = $this -> db -> get();
-    if($query -> num_rows() == 1){
+    if($query -> num_rows() > 0){
       //modificar cantidad solo
+      echo"modificar cantidad solo";
     }
     else{
       $precio;
       $stockExistente;
-      $this -> db -> select('oid, nombre, descripcion, precio, stock, subcategoria, marcasoid, ofertaoid');
+      $this -> db -> select('oid, nombre, descripcion, precio, stock, subcategoriaoid, marcasoid, ofertaoid');
       $this -> db -> from('producto');
       $this -> db -> where('oid', $productooid);
       $query = $this -> db -> get();
@@ -51,9 +79,9 @@ class Producto extends CI_Model {
         $dataLineapedido = array(
           'precio' => $precio ,
           'cantidad' => $cantidad ,
-          'precioTotal' => (double)$precio * (int)$cantidad,
+          'precioTotal' => $precio*$cantidad,
           'productooid' => $productooid,
-          'carrooid' => $carrooid
+          'carrooid' => $identificadorCarro
         );
         $this->db->insert('lineapedido',$dataLineapedido);
 
@@ -65,11 +93,18 @@ class Producto extends CI_Model {
     }
   }
 
-  public function getProductosCarrito($username,$carrooid){
+  public function getProductosCarrito($username){
+    $this -> db -> select('oid, userName, carrooid');
+    $this -> db -> from('user');
+    $this -> db -> where('userName', $username);
+    $query = $this -> db -> get();
+    $result = $query->result();
+    foreach($result as $row){
+      $identificadorCarro = $row->carrooid;
+    }
     $productosCarrito = array();
     $arrayName = array();
     if($this->session->userdata('logged_in')){
-      $identificadorCarro = $carrooid;
       $data = array();
       $oid;
       $this -> db -> select('oid, cantidad, precioTotal, productooid, carrooid');
@@ -90,7 +125,7 @@ class Producto extends CI_Model {
     $this -> db -> select('oid, nombre, descripcion, precio, stock, subcategoriaoid, marcasoid, ofertaoid');
     $this -> db -> from('producto');
     $this -> db -> where('oid', $oid);
-    
+
   }
 
   public function getProductoByOid($oid){
@@ -100,7 +135,7 @@ class Producto extends CI_Model {
     $query = $this -> db -> get();
     if($query ->num_rows() > -1)
       return $query->result();
-    else 
+    else
       return false;
   }
 
