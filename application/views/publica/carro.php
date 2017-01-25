@@ -18,13 +18,5 @@
 
 	<?php endforeach; ?>
   </ul>
-<h4>Carrito</h4>
-<?php for ($x = 0; $x<count($carro); $x++): ?>
 
-    <li>
-        <?php echo $carro[$x]; ?>
-    </li>
-
-<?php endfor; ?>
-</ul>
 </main>

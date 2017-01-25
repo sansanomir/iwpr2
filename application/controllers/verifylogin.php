@@ -5,6 +5,7 @@ class VerifyLogin extends CI_Controller {
  {
    parent::__construct();
    $this->load->model('Usuario','',TRUE);
+   $this->load->model('Producto','',TRUE);
    $this->load->helper(array('form'));
  }
 
@@ -39,6 +40,7 @@ class VerifyLogin extends CI_Controller {
            $this->load->view('home/index');
          }
          else{
+           $data['producto'] = $this->Producto->listaProductos();
            $data['username'] = $session_data['username'];
            $this->load->view('publica/principal.php',$data);
            return true;

@@ -7,6 +7,7 @@ class Home extends CI_Controller {
 		parent::__construct();
 		$this->load->model('Producto','',TRUE);
 	}
+
 	public function index(){
 		$data['producto'] = $this->Producto->listaProductos();
 		if($this->session->userdata('logged_in')){
@@ -14,14 +15,15 @@ class Home extends CI_Controller {
 		 $data['username'] = $session_data['username'];
 		 if($session_data['username'] == "admin")
 			$this->load->view('home/index');
-		 else
-		 	$this->load->view('publica/principal', $data);
+			else{
+				$data['carro'] = $this->Producto->getProductosCarrito($session_data['username'],$session_data['carrooid']);
+		 		$this->load->view('publica/principal', $data);
+			}
 		}
 		else{
 			 $data['username'] = "invitado";
 			 $this->load->view('publica/principal', $data);
 		}
-
 	}
 
 	public function logout(){

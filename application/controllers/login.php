@@ -5,9 +5,11 @@ class Login extends CI_Controller {
     function __construct()
       {
        parent::__construct();
+       $this->load->model('Producto','',TRUE);
       }
 
       function index(){
+        $data['producto'] = $this->Producto->listaProductos();
         if($this->session->userdata('logged_in')){
           $session_data = $this->session->userdata('logged_in');
           $data['username'] = $session_data['username'];
