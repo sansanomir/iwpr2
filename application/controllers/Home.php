@@ -37,7 +37,7 @@ class Home extends CI_Controller {
 		$data['producto'] = $producto[0];
 		$marcasoid = $data['producto']->marcasoid;
 		$marca = $this->Marca->getMarcaByOid($marcasoid);
-		$data['marca'] = $marca->nombre;
+		$data['marca'] = $marca[0];
 
 		$this->load->view('publica/producto', $data);
 
