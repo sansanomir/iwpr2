@@ -6,6 +6,7 @@ class Home extends CI_Controller {
 	{
 		parent::__construct();
 		$this->load->model('Producto','',TRUE);
+		$this->load->model('Marca','',TRUE);
 	}
 
 	public function index(){
@@ -31,7 +32,14 @@ class Home extends CI_Controller {
 
 	}
 	public function producto($oid){
-		echo $oid."PRoducti";
+		
+		$producto = $this->Producto->getProductoByOid($oid);
+		$data['producto'] = $producto[0];
+		$marcasoid = $data['producto']->marcasoid;
+		$marca = $this->Marca->getMarcaByOid($marcasoid);
+		$data['marca'] = $marca->nombre;
+
+		$this->load->view('publica/producto', $data);
 
 	}
 	public function logout(){

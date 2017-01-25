@@ -16,8 +16,6 @@ foreach($css_files as $file): ?>
 </head>
 <body>
 
-<!--
-cabecera-->
     <header>
 
     </header>

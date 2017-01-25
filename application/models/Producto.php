@@ -93,6 +93,17 @@ class Producto extends CI_Model {
     
   }
 
+  public function getProductoByOid($oid){
+    $this -> db -> select('oid, nombre, descripcion, precio, stock, subcategoriaoid, marcasoid, ofertaoid');
+    $this -> db -> from('producto');
+    $this -> db -> where('oid', $oid);
+    $query = $this -> db -> get();
+    if($query ->num_rows() > -1)
+      return $query->result();
+    else 
+      return false;
+  }
+
 
 }
 ?>
