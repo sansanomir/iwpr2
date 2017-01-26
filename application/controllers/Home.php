@@ -16,12 +16,14 @@ class Home extends CI_Controller {
 		$data['direccionAdd'] = "http://localhost:8080/pccomponentes/index.php/home/addCarro/";
 		$data['categorias'] = $this->Producto->listaCategorias();
 		$data['direccionlistaprod'] = "http://localhost:8080/pccomponentes/index.php/home/listaproductos/";
+
 		if($this->session->userdata('logged_in')){
 		 $session_data = $this->session->userdata('logged_in');
 		 $data['username'] = $session_data['username'];
 		 if($session_data['username'] == "admin")
 			$this->load->view('home/index');
 			else{
+				$data['precioCarrito'] = $this->Producto->getPrecioCarrito($session_data['username']);
 				$data['direccionComprar'] = "http://localhost:8080/pccomponentes/index.php/home/comprar/";
 				$data['carro'] = $this->Producto->getProductosCarrito($session_data['username']);
 		 		$this->load->view('publica/principal', $data);
@@ -30,23 +32,42 @@ class Home extends CI_Controller {
 		else{
 			$data['direccionComprar'] = "http://localhost:8080/pccomponentes/index.php/home/noRegistrado/";
 			 $data['username'] = "invitado";
+			 $data['precioCarrito'] = $this->Producto->getPrecioCarrito("invitado");
 			 $data['carro'] = $this->Producto->getProductosCarrito("invitado");
 			 $this->load->view('publica/principal', $data);
 		}
 	}
 	public function addCarro($oid){
-	 	$session_data = $this->session->userdata('logged_in');
-		if($this->Producto->anyadirAlCarro($oid,1,$session_data['username'])){
-			$data['producto'] = $this->Producto->listaProductos();
-			$data['direccionComprar'] = "http://localhost:8080/pccomponentes/index.php/home/comprar/";
-			$data['direccion'] = "http://localhost:8080/pccomponentes/index.php/home/producto/";
-			$data['direccionAdd'] = "http://localhost:8080/pccomponentes/index.php/home/addCarro/";
-			$session_data = $this->session->userdata('logged_in');
-			$data['username'] = $session_data['username'];
-			$data['carro'] = $this->Producto->getProductosCarrito($session_data['username']);
-			$data['categorias'] = $this->Producto->listaCategorias();
-			$data['direccionlistaprod'] = "http://localhost:8080/pccomponentes/index.php/home/listaproductos/";
-			$this->load->view('publica/principal', $data);
+		$session_data = $this->session->userdata('logged_in');
+		if($this->session->userdata('logged_in')){
+			if($session_data['username'] == "invitado"){
+				if($this->Producto->anyadirAlCarro($oid,1,"invitado")){
+					$data['producto'] = $this->Producto->listaProductos();
+					$data['direccionComprar'] = "http://localhost:8080/pccomponentes/index.php/home/comprar/";
+					$data['direccion'] = "http://localhost:8080/pccomponentes/index.php/home/producto/";
+					$data['direccionAdd'] = "http://localhost:8080/pccomponentes/index.php/home/addCarro/";
+					$data['username'] = $session_data['username'];
+					$data['precioCarrito'] = $this->Producto->getPrecioCarrito($session_data['username']);
+					$data['carro'] = $this->Producto->getProductosCarrito("invitado");
+					$data['categorias'] = $this->Producto->listaCategorias();
+					$data['direccionlistaprod'] = "http://localhost:8080/pccomponentes/index.php/home/listaproductos/";
+					$this->load->view('publica/principal', $data);
+				}
+			}
+			else{
+				if($this->Producto->anyadirAlCarro($oid,1,$session_data['username'])){
+					$data['producto'] = $this->Producto->listaProductos();
+					$data['direccionComprar'] = "http://localhost:8080/pccomponentes/index.php/home/comprar/";
+					$data['direccion'] = "http://localhost:8080/pccomponentes/index.php/home/producto/";
+					$data['direccionAdd'] = "http://localhost:8080/pccomponentes/index.php/home/addCarro/";
+					$data['username'] = $session_data['username'];
+					$data['precioCarrito'] = $this->Producto->getPrecioCarrito($session_data['username']);
+					$data['carro'] = $this->Producto->getProductosCarrito($session_data['username']);
+					$data['categorias'] = $this->Producto->listaCategorias();
+					$data['direccionlistaprod'] = "http://localhost:8080/pccomponentes/index.php/home/listaproductos/";
+					$this->load->view('publica/principal', $data);
+				}
+			}
 		}
 	}
 
@@ -109,7 +130,7 @@ class Home extends CI_Controller {
 		foreach ($subcategorias as $subcategoria) {
 				$productos = $this->Producto->getListaProdSub($subcategoria->oid);
 				$data['productos'] = array_merge($data['productos'], $productos);
-			
+
 		}
 		$this->load->view('publica/listaproductos', $data);
 	}

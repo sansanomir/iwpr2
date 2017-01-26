@@ -69,7 +69,7 @@ class Producto extends CI_Model {
       //modificar cantidad, solo insertar en lineapedido"
       $data = array(
         'cantidad' => 1 ,
-        'precio' => "-1" ,
+        'precio' => $this->getPrecioProducto($productooid) ,
         'precioTotal' => "-1",
         'productooid' => $productooid,
         'carrooid' => $identificadorCarro
@@ -77,7 +77,7 @@ class Producto extends CI_Model {
       $this->db->insert('lineapedido',$data);
       return true;
     }
-    else{
+    else{//////////
       $precio;
       $stockExistente;
       $this -> db -> select('oid, nombre, descripcion, precio, stock, subcategoriaoid, marcasoid, ofertaoid');
@@ -91,7 +91,7 @@ class Producto extends CI_Model {
       }
       $data = array(
         'cantidad' => 1 ,
-        'precio' => "-1" ,
+        'precio' => $this->getPrecioProducto($productooid) ,
         'precioTotal' => "-1",
         'productooid' => $productooid,
         'carrooid' => $identificadorCarro
@@ -261,11 +261,11 @@ class Producto extends CI_Model {
   }
 
   public function getOidUsuarioByUserName($username){
-    $this -> db -> select('oid, userName, nombre');
+    $oid;
+    $this -> db -> select('oid, userName');
     $this -> db -> from('user');
     $this -> db -> where('userName', $username);
     $query = $this -> db -> get();
-    $result = $query->result();
     $result = $query->result();
     foreach($result as $row){
       $oid = $row->oid;
@@ -332,6 +332,34 @@ class Producto extends CI_Model {
         return $query->result();
       else
         return false;
+  }
+
+  public function getPrecioCarrito($userName){
+    $precioTotal=0;
+    $useroid = $this->Producto->getOidUsuarioByUserName($userName);
+    $oidCarro = $this->Producto->getOidCarro($useroid);
+    $this -> db -> select('oid, cantidad, precio,carrooid');
+    $this -> db -> from('lineapedido');
+    $this -> db -> where('carrooid', $oidCarro);
+    $query = $this -> db -> get();
+    $result = $query->result();
+    foreach($result as $row){
+      $oid = $row->oid;
+      $precioTotal = $precioTotal + ($row->cantidad*$row->precio);
+    }
+    return $precioTotal;
+  }
+  public function getPrecioProducto($productooid){
+    $precio;
+    $this -> db -> select('oid, precio');
+    $this -> db -> from('producto');
+    $this -> db -> where('oid', $productooid);
+    $query = $this -> db -> get();
+    $result = $query->result();
+    foreach($result as $row){
+      $precio = $row->precio;
+    }
+    return $precio;
   }
 }
 ?>

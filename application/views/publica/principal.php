@@ -22,7 +22,7 @@
         <?php foreach ($categorias as $categoria): ?>
           <li class="list-group-item ">
               <a href=<?php echo $direccionlistaprod.$categoria->oid; ?>><?php echo $categoria->nombre ?></a>
-              
+
           </li>
         <?php endforeach; ?>
       </ul>
@@ -63,7 +63,14 @@
         </th>
     </tr>
     <?php endforeach; ?>
-
+    <tr>
+      <th>
+        Total:
+      </th>
+      <th>
+        <?php echo $precioCarrito." €"?>
+      </th>
+    </tr>
       <a href=<?php echo $direccionComprar; ?>> Comprar! </a>
     </form>
     </table>
