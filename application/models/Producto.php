@@ -207,5 +207,44 @@ class Producto extends CI_Model {
     else
       return false;
   }
+  public function vaciarCarrito($userName){
+    $identificadorCarro;
+    $identificadorUsuario = $this->Producto->getOidUsuarioByUserName($userName);
+    $this->db->delete('carro', array('useroid' => $identificadorUsuario));
+    $data = array(
+      'useroid' => $identificadorUsuario,
+    );
+
+    $this->db->insert('carro',$data);
+    $this -> db -> select('oid, useroid');
+    $this -> db -> from('carro');
+    $this -> db -> where('useroid', $identificadorUsuario);
+    $query = $this -> db -> get();
+    $result = $query->result();
+    foreach($result as $row){
+      $identificadorCarro = $row->oid;
+    }
+
+    //ponemos el nuevo carro al usuario
+    $dataUsuario = array('carrooid' => $identificadorCarro);
+    $this->db->set('carrooid',$identificadorCarro,FALSE);
+    $this->db->where('oid',$identificadorUsuario);
+    $this->db->update('user');
+
+    $data['volver'] = "http://localhost:8080/pccomponentes/index.php/home/";
+    $this->load->view('privada/compraExito', $data);
+  }
+  public function getOidUsuarioByUserName($username){
+    $this -> db -> select('oid, userName, nombre');
+    $this -> db -> from('user');
+    $this -> db -> where('userName', $username);
+    $query = $this -> db -> get();
+    $result = $query->result();
+    $result = $query->result();
+    foreach($result as $row){
+      $oid = $row->oid;
+    }
+    return $oid;
+  }
 }
 ?>

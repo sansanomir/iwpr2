@@ -45,5 +45,8 @@
     </th>
 </tr>
 <?php endforeach; ?>
+
+  <a href=<?php echo $direccionComprar; ?>> Comprar! </a>
+</form>
 </table>
 </main>
