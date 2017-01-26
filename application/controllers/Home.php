@@ -7,6 +7,7 @@ class Home extends CI_Controller {
 		parent::__construct();
 		$this->load->model('Producto','',TRUE);
 		$this->load->model('Marca','',TRUE);
+		$this->load->model('Usuario','',TRUE);
 	}
 
 	public function index(){
@@ -132,6 +133,7 @@ class Home extends CI_Controller {
 		if($this->session->userdata('logged_in')){
 		 $session_data = $this->session->userdata('logged_in');
 		 $data['username'] = $session_data['username'];
+		 $data['misdatos'] = $this->Usuario->getDatosByUsername($data['username']);
 		 if($session_data['username'] != "admin"){
 			 $this->load->view('privada/mis_datos', $data);
 		 }
