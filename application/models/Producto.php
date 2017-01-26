@@ -223,7 +223,7 @@ class Producto extends CI_Model {
     foreach($result as $row){
       $identificadorCarro = $row->oid;
     }
-
+    
     //ponemos el nuevo carro al usuario
     $dataUsuario = array('carrooid' => $identificadorCarro);
     $this->db->set('carrooid',$identificadorCarro,FALSE);
@@ -245,10 +245,10 @@ class Producto extends CI_Model {
     }
     return $oid;
   }
-  public function anyadirOpinion($oid, $opinion) {
+  public function anyadirOpinion($oid, $opinion, $useroid) {
       $data = array(
         'comentario' => $opinion ,
-        'useroid' => 7,
+        'useroid' => $useroid,
         'productooid' => $oid
       );
       $this->db->insert('opinion',$data);
