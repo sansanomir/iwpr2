@@ -24,13 +24,18 @@
 	  <ul class="list-group">
 	  <form action="home/addCarro">
 		<?php foreach ($productos as $prod): ?>
-
-		    <li class="list-group-item">
-
-		        <a href=<?php echo $direccion.$prod->oid; ?>><?php echo $prod->oid."  ".$prod->nombre ."  ".$prod->precio."€" ?></a>
-            <br>
-            <a href=<?php echo $direccionAdd.$prod->oid; ?>> Añadir al carrito </a>
-		    </li>
+			<div class="container col-md-6">
+	         	<a href=<?php echo $direccion.$prod->oid; ?>>
+	            	<img style='height: 300px; width: 300px;' src="<?php echo base_url(); ?>assets/images/<?php echo $prod->oid?>.png">
+	          	</a>
+			    <li class="list-group-item">
+	              
+	  		        <?php echo "<h4>".$prod->nombre ."</h4>"?>
+	              <?php echo "<p>Precio: ".$prod->precio."€</p>" ?>
+	              <?php echo "<p>Disponibles: ".$prod->stock."</p>" ?>
+	              <a href=<?php echo $direccionAdd.$prod->oid; ?>> <span class="glyphicon glyphicon-shopping-cart" aria-hidden="true"></span>Añadir al carrito </a>
+	  		    </li>
+			</div>
 
 		<?php endforeach; ?>
 	  </ul>
