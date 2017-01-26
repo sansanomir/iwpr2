@@ -8,15 +8,12 @@
 		<br>
 		<br>
 		<h3>Opiniones</h3>
-		<?php foreach ($opiniones as $opi): ?>
-		    <li class="list-group-item">
-		        <?php echo $opi->useroid ?>
-				<br>
-				<?php echo $opi->comentario ?>
-		    </li>
-				<br>
-		<?php endforeach; ?>
-		<?php echo validation_errors(); ?>
+		<?php if (defined('success')) {
+			echo "<div><p> ".$success."</p></div>";
+		}?>
+		<?php if (defined('error')) {
+			echo "<div><p> ".$error."</p></div>";
+		}?>
 		<?php echo form_open('home/addOpinion/'.$producto->oid); ?>
 
 		    <label for="opinion">Opinión</label><br />
@@ -25,4 +22,13 @@
 		    <input type="submit" name="submit" value="Añadir opinion" />
 
 		</form>
+		<?php foreach ($opiniones as $opi): ?>
+		    <li class="list-group-item">
+		        <?php echo $opi->useroid ?>
+				<br>
+				<?php echo $opi->comentario ?>
+		    </li>
+				<br>
+		<?php endforeach; ?>
+
 </main>

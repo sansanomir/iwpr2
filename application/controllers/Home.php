@@ -43,20 +43,33 @@ class Home extends CI_Controller {
 	}
 
 	public function addOpinion($oid) {
-			if($this->Producto->anyadirOpinion($oid,$this->input->post('opinion'))) {
-				$producto = $this->Producto->getProductoByOid($oid);
-				$data['producto'] = $producto[0];
-				$marcasoid = $data['producto']->marcasoid;
-				$marca = $this->Marca->getMarcaByOid($marcasoid);
-				$data['marca'] = $marca[0];
-				$data['direccion'] = "http://localhost:8080/pccomponentes/index.php/home/addCarro/".$oid;
-				$data['opiniones'] = $this->Producto->getOpinionesByProductoOid($oid);
-				foreach ($data['opiniones'] as $opi) {
-					$nombre = $this->Producto->getNombreUsuarioByOid($opi->useroid);
-					$opi->useroid = $nombre[0]->userName;
+
+		if($this->session->userdata('logged_in')){
+		 	$session_data = $this->session->userdata('logged_in');
+		 	if($this->input->post('opinion') != null && $this->input->post('opinion') !='') {
+				if($this->Producto->anyadirOpinion($oid,$this->input->post('opinion'), $session_data['oid'])) {
+					$data['success'] = 'Opinión añadido correctamente.';
+				} else {
+					$data['error'] = 'Error no se a podido añadir la opinión';
 				}
-				$this->load->view('publica/producto', $data);
+			} else {
+				$data['error'] = 'La opinión no puede estar vacia';
 			}
+		} else {
+			$data['error'] = 'Debe iniciar sesión para añadir una opinión.';
+		}
+		$producto = $this->Producto->getProductoByOid($oid);
+		$data['producto'] = $producto[0];
+		$marcasoid = $data['producto']->marcasoid;
+		$marca = $this->Marca->getMarcaByOid($marcasoid);
+		$data['marca'] = $marca[0];
+		$data['direccion'] = "http://localhost:8080/pccomponentes/index.php/home/addCarro/".$oid;
+		$data['opiniones'] = $this->Producto->getOpinionesByProductoOid($oid);
+		foreach ($data['opiniones'] as $opi) {
+			$nombre = $this->Producto->getNombreUsuarioByOid($opi->useroid);
+			$opi->useroid = $nombre[0]->userName;
+		}
+		$this->load->view('publica/producto', $data);
 	}
 	public function producto($oid){
 		$producto = $this->Producto->getProductoByOid($oid);

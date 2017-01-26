@@ -207,10 +207,10 @@ class Producto extends CI_Model {
       return false;
   }
 
-  public function anyadirOpinion($oid, $opinion) {
+  public function anyadirOpinion($oid, $opinion, $useroid) {
       $data = array(
         'comentario' => $opinion ,
-        'useroid' => 7,
+        'useroid' => $useroid,
         'productooid' => $oid
       );
       $this->db->insert('opinion',$data);
