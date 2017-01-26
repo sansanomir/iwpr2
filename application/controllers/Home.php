@@ -43,6 +43,8 @@ class Home extends CI_Controller {
 			$session_data = $this->session->userdata('logged_in');
 			$data['username'] = $session_data['username'];
 			$data['carro'] = $this->Producto->getProductosCarrito($session_data['username']);
+			$data['categorias'] = $this->Producto->listaCategorias();
+			$data['direccionlistaprod'] = "http://localhost:8080/pccomponentes/index.php/home/listaproductos/";
 			$this->load->view('publica/principal', $data);
 		}
 	}
