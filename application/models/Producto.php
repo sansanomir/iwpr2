@@ -184,5 +184,28 @@ class Producto extends CI_Model {
     else
       return false;
   }
+
+  public function getOpinionesByProductoOid($oid){
+    $this -> db -> select('comentario, useroid, productooid, userName');
+    $this -> db -> from('opinion ,user');
+    $this -> db -> where('productooid', $oid);
+    $this -> db -> where('opinion.useroid','user.oid');
+    $query = $this -> db -> get();
+    if($query ->num_rows() > -1)
+      return $query->result();
+    else
+      return false;
+  }
+
+  public function getNombreUsuarioByOid($oid){
+    $this -> db -> select('oid, userName, nombre');
+    $this -> db -> from('user');
+    $this -> db -> where('oid', $oid);
+    $query = $this -> db -> get();
+    if($query ->num_rows() > -1)
+      return $query->result();
+    else
+      return false;
+  }
 }
 ?>

@@ -48,6 +48,7 @@ class Home extends CI_Controller {
 		$marca = $this->Marca->getMarcaByOid($marcasoid);
 		$data['marca'] = $marca[0];
 		$data['direccion'] = "http://localhost:8080/pccomponentes/index.php/home/addCarro/".$oid;
+		$data['opiniones'] = $this->Producto->getOpinionesByProductoOid($oid);
 		$this->load->view('publica/producto', $data);
 	}
 	public function logout(){
