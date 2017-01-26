@@ -186,10 +186,9 @@ class Producto extends CI_Model {
   }
 
   public function getOpinionesByProductoOid($oid){
-    $this -> db -> select('comentario, useroid, productooid, userName');
-    $this -> db -> from('opinion ,user');
+    $this -> db -> select('comentario, useroid');
+    $this -> db -> from('opinion');
     $this -> db -> where('productooid', $oid);
-    $this -> db -> where('opinion.useroid','user.oid');
     $query = $this -> db -> get();
     if($query ->num_rows() > -1)
       return $query->result();
@@ -206,6 +205,16 @@ class Producto extends CI_Model {
       return $query->result();
     else
       return false;
+  }
+
+  public function anyadirOpinion($oid, $opinion) {
+      $data = array(
+        'comentario' => $opinion ,
+        'useroid' => 7,
+        'productooid' => $oid
+      );
+      $this->db->insert('opinion',$data);
+      return true;
   }
 }
 ?>
