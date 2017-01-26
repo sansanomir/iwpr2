@@ -14,7 +14,20 @@
   <?php echo anchor('home/acercade','Sobre nosotros','title="Acercade"'); ?>
   </nav>
 
-  <div class="container">
+  <div class="container col-md-2">
+      <ul class="list-group">
+        <li class="list-group-item active">
+            Categorías
+        </li>
+        <?php foreach ($categorias as $categoria): ?>
+          <li class="list-group-item ">
+              <a href=<?php echo $direccionlistaprod.$categoria->oid; ?>><?php echo $categoria->nombre ?></a>
+              
+          </li>
+        <?php endforeach; ?>
+      </ul>
+  </div>
+  <div class="container col-md-10">
 	  <ul class="list-group">
 	  <form action="home/addCarro">
 		<?php foreach ($producto as $prod): ?>
@@ -30,27 +43,29 @@
 	  </ul>
 	  </form>
   </div>
-<h4>Carrito</h4>
-<table>
-  <tr>
-    <th>
-      Producto
-    </th>
-    <th>
-      Cantidad
-    </th>
-<?php foreach ($carro as $clave => $prod ): ?>
-<tr>
-    <th>
-        <?php echo $prod['nombre'] ?>
-    </th>
-    <th>
-      <?php echo $prod['cantidad'] ?>
-    </th>
-</tr>
-<?php endforeach; ?>
+  <div class="container col-md-10">
+    <h4>Carrito</h4>
+    <table>
+      <tr>
+        <th>
+          Producto
+        </th>
+        <th>
+          Cantidad
+        </th>
+    <?php foreach ($carro as $clave => $prod ): ?>
+    <tr>
+        <th>
+            <?php echo $prod['nombre'] ?>
+        </th>
+        <th>
+          <?php echo $prod['cantidad'] ?>
+        </th>
+    </tr>
+    <?php endforeach; ?>
 
-  <a href=<?php echo $direccionComprar; ?>> Comprar! </a>
-</form>
-</table>
+      <a href=<?php echo $direccionComprar; ?>> Comprar! </a>
+    </form>
+    </table>
+  </div>
 </main>
