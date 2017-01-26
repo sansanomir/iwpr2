@@ -15,7 +15,6 @@ foreach($css_files as $file): ?>
 
 </head>
 <body>
-
     <header>
 
     </header>

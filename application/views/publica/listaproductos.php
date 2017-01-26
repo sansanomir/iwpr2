@@ -3,10 +3,15 @@
 ?>
 <main>
 
-	<div class="page-header">
-		<h2><?php echo "Categoria: ".$categoria->nombre ?></h2>
+	<div class="page-header" style='margin-bottom: 100px'>
+		<div class="container col-md-4">
+         	<a href="http://localhost:8080/pccomponentes/index.php/home"><img style='height: 100px; width: 100px;' src="<?php echo base_url(); ?>assets/images/logo.svg"></a>
+      	</div>
+      	<div class="container col-md-8">
+			<h2><?php echo "Categoria: ".$categoria->nombre ?></h2>
+		</div>
 	</div>
-
+	<div>
  	<div class="container col-md-2">
   		<ul class="list-group">
     		<li class="list-group-item active">
@@ -41,5 +46,10 @@
 	  </ul>
 	  </form>
   </div>
+  </div>
 
 </main>
+
+<?php
+    $this->load->view('inc/pie.php');
+?>

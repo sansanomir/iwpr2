@@ -2,18 +2,35 @@
     $this->load->view('inc/bootstrap.php');
 ?>
 <main>
-  <h2>Productos</h2>
-  <?php echo "Hola ".$username;?>
 
-  <br>
-  <nav class="navbar navbar-toggleable-md navbar-light bg-faded">
-  <?php echo anchor('login/index','Logueate','title="Login"'); ?>
-  <?php echo anchor('home/logout','Logout','title="Logout"'); ?>
-  <?php echo anchor('home/registro','Registro','title="Registro"'); ?>
-  <?php echo anchor('home/misdatos','Mis datos','title="Mis datos"'); ?>
-  <?php echo anchor('home/acercade','Sobre nosotros','title="Acercade"'); ?>
-  </nav>
+    <div class="page-header" style='margin-bottom: 100px'>
 
+      <div class="container col-md-4">
+         <a href="http://localhost:8080/pccomponentes/index.php/home"><img style='height: 100px; width: 100px;' src="<?php echo base_url(); ?>assets/images/logo.svg"></a>
+      </div>
+      <div class="container col-md-4">
+      
+        <h2>Productos</h2>
+      
+      </div>
+      
+
+      <div class="container col-md-4">  
+          <nav class="navbar navbar-toggleable-md navbar-light bg-faded">
+          <?php echo "Hola ".$username;?><br>
+          <?php echo anchor('login/index','Logueate','title="Login"'); ?>
+          <?php echo anchor('home/logout','Logout','title="Logout"'); ?>
+          <?php echo anchor('home/registro','Registro','title="Registro"'); ?>
+          <?php echo anchor('home/misdatos','Mis datos','title="Mis datos"'); ?>
+          <?php echo anchor('home/acercade','Sobre nosotros','title="Acercade"'); ?>
+          </nav>
+      </div>
+  </div>
+  </br>
+   </br>
+    </br>
+
+  <div>
   <div class="container col-md-2">
       <ul class="list-group">
         <li class="list-group-item active">
@@ -48,9 +65,9 @@
 		<?php endforeach; ?>
 	  </ul>
 	  </form>
-  </div>
+  </div class="container col-md-12">
   <div class="container col-md-2">
-    <h4>Carrito</h4>
+    <h4 style='font-size: 50px;'>Carrito <span class="glyphicon glyphicon-shopping-cart" ></span></h4>
     <table>
       <tr>
         <th>
@@ -59,6 +76,7 @@
         <th>
           Cantidad
         </th>
+      </tr>
     <?php foreach ($carro as $clave => $prod ): ?>
     <tr>
         <th>
@@ -81,4 +99,9 @@
     </form>
     </table>
   </div>
+  </div>
 </main>
+
+<?php
+    $this->load->view('inc/pie.php');
+?>

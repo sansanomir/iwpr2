@@ -2,7 +2,14 @@
     $this->load->view('inc/bootstrap.php');
 ?>
 <main class="container">
-  <h2>Registro:</h2>
+  <div class="page-header" style='margin-bottom: 100px'>
+    <div class="container col-md-4">
+          <a href="http://localhost:8080/pccomponentes/index.php/home"><img style='height: 100px; width: 100px;' src="<?php echo base_url(); ?>assets/images/logo.svg"></a>
+        </div>
+        <div class="container col-md-8">
+      <h2>Registro</h2>
+    </div>
+  </div>
   <!--<form action="respuesta/script.php" method="POST" name="f1" id="f1"-->
   <!--class="form" role="form">-->
   <?php echo validation_errors(); ?>
@@ -52,3 +59,7 @@
     <input type="submit" class="btn btn-primary" value="Registro" id="btnRegistro" name="boton">
   </form>
 </main>
+
+<?php
+    $this->load->view('inc/pie.php');
+?>

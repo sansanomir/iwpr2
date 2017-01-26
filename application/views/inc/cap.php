@@ -6,7 +6,6 @@
     <link rel="stylesheet" type="text/css" href="<?php echo base_url();?>/assets/css/bootstracp.min.css">
 </head>
 <body>
-
 <!--
 cabecera-->
     <header>

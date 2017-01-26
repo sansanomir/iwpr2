@@ -23,3 +23,7 @@
   </ul>
 
 </main>
+
+<?php
+    $this->load->view('inc/pie.php');
+?>

@@ -23,7 +23,7 @@ class Login extends CI_Controller {
         }
         else{
           $this->load->helper(array('form'));
-          $this->load->view('publica/login_view.php');
+          $this->load->view('publica/login_view.php', $data);
         }
       }
   }
