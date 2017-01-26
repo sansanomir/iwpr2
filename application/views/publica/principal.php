@@ -7,7 +7,7 @@
   <?php echo anchor('home/logout','Logout','title="Logout"'); ?>
   <?php echo anchor('home/registro','Registro','title="Registro"'); ?>
   <?php echo anchor('home/misdatos','Mis datos','title="Mis datos"'); ?>
-  <?php echo anchor('home/misdatos','Mis datos','title="Mis datos"'); ?>
+  <?php echo anchor('home/acercade','Sobre nosotros','title="Acercade"'); ?>
   <br>
 
   <div class="container">
@@ -45,5 +45,8 @@
     </th>
 </tr>
 <?php endforeach; ?>
+
+  <a href=<?php echo $direccionComprar; ?>> Comprar! </a>
+</form>
 </table>
 </main>

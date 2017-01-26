@@ -19,11 +19,13 @@ class Home extends CI_Controller {
 		 if($session_data['username'] == "admin")
 			$this->load->view('home/index');
 			else{
+				$data['direccionComprar'] = "http://localhost:8080/pccomponentes/index.php/home/comprar/";
 				$data['carro'] = $this->Producto->getProductosCarrito($session_data['username']);
 		 		$this->load->view('publica/principal', $data);
 			}
 		}
 		else{
+			$data['direccionComprar'] = "http://localhost:8080/pccomponentes/index.php/home/noRegistrado/";
 			 $data['username'] = "invitado";
 			 $data['carro'] = $this->Producto->getProductosCarrito("invitado");
 			 $this->load->view('publica/principal', $data);
@@ -33,6 +35,7 @@ class Home extends CI_Controller {
 	 	$session_data = $this->session->userdata('logged_in');
 		if($this->Producto->anyadirAlCarro($oid,1,$session_data['username'])){
 			$data['producto'] = $this->Producto->listaProductos();
+			$data['direccionComprar'] = "http://localhost:8080/pccomponentes/index.php/home/comprar/";
 			$data['direccion'] = "http://localhost:8080/pccomponentes/index.php/home/producto/";
 			$data['direccionAdd'] = "http://localhost:8080/pccomponentes/index.php/home/addCarro/";
 			$session_data = $this->session->userdata('logged_in');
@@ -46,8 +49,9 @@ class Home extends CI_Controller {
 
 		if($this->session->userdata('logged_in')){
 		 	$session_data = $this->session->userdata('logged_in');
+		 	$useroid = $this->Producto->getOidUsuarioByUserName($session_data['username']);
 		 	if($this->input->post('opinion') != null && $this->input->post('opinion') !='') {
-				if($this->Producto->anyadirOpinion($oid,$this->input->post('opinion'), $session_data['oid'])) {
+				if($this->Producto->anyadirOpinion($oid,$this->input->post('opinion'), $useroid)) {
 					$data['success'] = 'Opinión añadido correctamente.';
 				} else {
 					$data['error'] = 'Error no se a podido añadir la opinión';
@@ -71,6 +75,7 @@ class Home extends CI_Controller {
 		}
 		$this->load->view('publica/producto', $data);
 	}
+
 	public function producto($oid){
 		$producto = $this->Producto->getProductoByOid($oid);
 		$data['producto'] = $producto[0];
@@ -106,6 +111,16 @@ class Home extends CI_Controller {
 			redirect('home');
 		}
 	}
+
+	public function comprar(){
+		$session_data = $this->session->userdata('logged_in');
+		$this->Producto->vaciarCarrito($session_data['username']);
+	}
+	public function noRegistrado(){
+		$data['volver'] = "http://localhost:8080/pccomponentes/index.php/home/";
+		$this->load->view('publica/noRegistrado',$data);
+	}
+
 	public function registro(){
 		$this->load->view('publica/registro_view');
 	}
