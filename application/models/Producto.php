@@ -186,9 +186,10 @@ class Producto extends CI_Model {
   }
 
   public function getOpinionesByProductoOid($oid){
-    $this -> db -> select('comentario, useroid');
+    $this -> db -> select('comentario, useroid,ok');
     $this -> db -> from('opinion');
     $this -> db -> where('productooid', $oid);
+    $this -> db -> where('ok', 1);
     $query = $this -> db -> get();
     if($query ->num_rows() > -1)
       return $query->result();
@@ -223,7 +224,7 @@ class Producto extends CI_Model {
     foreach($result as $row){
       $identificadorCarro = $row->oid;
     }
-    
+
     //ponemos el nuevo carro al usuario
     $dataUsuario = array('carrooid' => $identificadorCarro);
     $this->db->set('carrooid',$identificadorCarro,FALSE);

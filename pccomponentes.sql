@@ -3,7 +3,7 @@
 -- http://www.phpmyadmin.net
 --
 -- Host: localhost
--- Generation Time: Jan 26, 2017 at 01:27 PM
+-- Generation Time: Jan 26, 2017 at 05:49 PM
 -- Server version: 10.1.19-MariaDB
 -- PHP Version: 5.5.38
 
@@ -36,9 +36,9 @@ CREATE TABLE `carro` (
 --
 
 INSERT INTO `carro` (`oid`, `useroid`) VALUES
-(1, 7),
 (2, 10),
-(8, 6);
+(15, 6),
+(16, 7);
 
 -- --------------------------------------------------------
 
@@ -139,7 +139,44 @@ INSERT INTO `lineapedido` (`oid`, `cantidad`, `precio`, `precioTotal`, `producto
 (39, 1, -1, -1, 3, 2),
 (40, 1, -1, -1, 3, 2),
 (41, 1, -1, -1, 3, 2),
-(42, 1, -1, -1, 4, 2);
+(42, 1, -1, -1, 4, 2),
+(43, 1, -1, -1, 4, 1),
+(44, 1, -1, -1, 4, 1),
+(45, 1, -1, -1, 4, 1),
+(46, 1, -1, -1, 4, 1),
+(47, 1, -1, -1, 4, 1),
+(48, 1, -1, -1, 4, 1),
+(49, 1, -1, -1, 4, 1),
+(50, 1, -1, -1, 4, 1),
+(51, 1, -1, -1, 4, 1),
+(52, 1, -1, -1, 4, 1),
+(53, 1, -1, -1, 4, 1),
+(54, 1, -1, -1, 4, 1),
+(55, 1, -1, -1, 2, 13),
+(56, 1, -1, -1, 2, 13),
+(57, 1, -1, -1, 3, 13),
+(58, 1, -1, -1, 4, 13),
+(59, 1, -1, -1, 4, 2),
+(60, 1, -1, -1, 4, 2),
+(61, 1, -1, -1, 4, 2),
+(62, 1, -1, -1, 4, 2),
+(63, 1, -1, -1, 2, 2),
+(64, 1, -1, -1, 2, 14),
+(65, 1, -1, -1, 3, 14),
+(66, 1, -1, -1, 3, 14),
+(67, 1, -1, -1, 2, 15),
+(68, 1, -1, -1, 2, 15),
+(69, 1, -1, -1, 3, 15),
+(70, 1, -1, -1, 3, 15),
+(71, 1, -1, -1, 3, 15),
+(72, 1, -1, -1, 3, 15),
+(73, 1, -1, -1, 3, 2),
+(74, 1, -1, -1, 2, 16),
+(75, 1, -1, -1, 3, 16),
+(76, 1, -1, -1, 2, 16),
+(77, 1, -1, -1, 4, 16),
+(78, 1, -1, -1, 4, 16),
+(79, 1, -1, -1, 4, 16);
 
 -- --------------------------------------------------------
 
@@ -191,16 +228,21 @@ CREATE TABLE `opinion` (
   `oid` int(11) NOT NULL,
   `comentario` varchar(100) COLLATE utf8_bin NOT NULL,
   `useroid` int(11) NOT NULL,
-  `productooid` int(11) NOT NULL
+  `productooid` int(11) NOT NULL,
+  `ok` int(11) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_bin;
 
 --
 -- Dumping data for table `opinion`
 --
 
-INSERT INTO `opinion` (`oid`, `comentario`, `useroid`, `productooid`) VALUES
-(1, 'Muy buena torre', 7, 4),
-(2, 'Me gusta mucho', 6, 4);
+INSERT INTO `opinion` (`oid`, `comentario`, `useroid`, `productooid`, `ok`) VALUES
+(1, 'Muy buena torre', 7, 4, 1),
+(2, 'Me gusta mucho', 6, 4, 0),
+(3, 'bueno', 7, 3, 0),
+(4, 'fdas', 7, 3, 0),
+(5, 'Comentario', 6, 4, 0),
+(6, 'Comentario de hsm', 7, 2, 0);
 
 -- --------------------------------------------------------
 
@@ -275,8 +317,8 @@ CREATE TABLE `user` (
 INSERT INTO `user` (`oid`, `userName`, `password`, `nombre`, `email`, `direccion`, `cuenta`, `carrooid`) VALUES
 (2, 'pep', 'pep', 'pep', 'pep', 'pep', 'pep', NULL),
 (4, 'pepe', 'pepe', 'lmsadml', 'mlfdaslm', 'dfasm', 'fdasm', NULL),
-(6, 'juan', 'a94652aa97c7211ba8954dd15a3cf838', 'Juanito', 'juanito@gmail.com', 'Calle roja', '1324', 6),
-(7, 'hsm', '75bc08308363144baf3b29af7c580e0b', 'Héctor Sansano', 'sansanomiralles@gmail.com', 'Calle roja', '9123', 1),
+(6, 'juan', 'a94652aa97c7211ba8954dd15a3cf838', 'Juanito', 'juanito@gmail.com', 'Calle roja', '1324', 15),
+(7, 'hsm', '75bc08308363144baf3b29af7c580e0b', 'Héctor Sansano', 'sansanomiralles@gmail.com', 'Calle roja', '9123', 16),
 (8, 'admin', '21232f297a57a5a743894a0e4a801fc3', 'Administrador', 'admin@pccomponentes.com', 'Calle amarilla', '452345623', NULL),
 (9, '', 'd41d8cd98f00b204e9800998ecf8427e', '', '', '', '', NULL),
 (10, 'invitado', '', '', '', '', '', 2);
@@ -348,7 +390,7 @@ ALTER TABLE `user`
 -- AUTO_INCREMENT for table `carro`
 --
 ALTER TABLE `carro`
-  MODIFY `oid` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=10;
+  MODIFY `oid` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=17;
 --
 -- AUTO_INCREMENT for table `categoria`
 --
@@ -363,7 +405,7 @@ ALTER TABLE `imagenes`
 -- AUTO_INCREMENT for table `lineapedido`
 --
 ALTER TABLE `lineapedido`
-  MODIFY `oid` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=43;
+  MODIFY `oid` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=80;
 --
 -- AUTO_INCREMENT for table `marcas`
 --
@@ -373,7 +415,7 @@ ALTER TABLE `marcas`
 -- AUTO_INCREMENT for table `opinion`
 --
 ALTER TABLE `opinion`
-  MODIFY `oid` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=3;
+  MODIFY `oid` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=7;
 --
 -- AUTO_INCREMENT for table `producto`
 --
