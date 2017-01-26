@@ -3,7 +3,7 @@
 -- http://www.phpmyadmin.net
 --
 -- Host: localhost
--- Generation Time: Jan 26, 2017 at 05:49 PM
+-- Generation Time: Jan 26, 2017 at 06:52 PM
 -- Server version: 10.1.19-MariaDB
 -- PHP Version: 5.5.38
 
@@ -176,7 +176,10 @@ INSERT INTO `lineapedido` (`oid`, `cantidad`, `precio`, `precioTotal`, `producto
 (76, 1, -1, -1, 2, 16),
 (77, 1, -1, -1, 4, 16),
 (78, 1, -1, -1, 4, 16),
-(79, 1, -1, -1, 4, 16);
+(79, 1, -1, -1, 4, 16),
+(80, 1, -1, -1, 9, 2),
+(81, 1, -1, -1, 9, 2),
+(82, 1, -1, -1, 4, 2);
 
 -- --------------------------------------------------------
 
@@ -197,7 +200,10 @@ INSERT INTO `marcas` (`oid`, `nombre`) VALUES
 (1, 'Apple'),
 (2, 'Lenovo'),
 (3, 'Msi'),
-(4, 'Hp');
+(4, 'Hp'),
+(5, 'Logitech'),
+(6, 'Sony'),
+(7, 'Pioneer');
 
 -- --------------------------------------------------------
 
@@ -266,9 +272,13 @@ CREATE TABLE `producto` (
 --
 
 INSERT INTO `producto` (`oid`, `nombre`, `descripcion`, `precio`, `stock`, `subcategoriaoid`, `marcasoid`, `ofertaoid`) VALUES
-(2, 'LEnovo thinkpad', 'dfgfagfa', '1000', 34, 1, 2, 0),
+(2, 'Lenovo thinkpad', 'Macnífico portátil', '1000', 34, 1, 2, 0),
 (3, 'Ratón msi', 'Ratón para gamming', '34', -1, 3, 3, 0),
-(4, 'Torre HP', 'MAgnifica tore blablabla', '700', 91, 5, 4, 0);
+(4, 'Torre HP', 'Magnifica tore blablabla', '700', 91, 5, 4, 0),
+(6, 'Macbook Pro', 'Portátil de Apple de última generación?', '1300', 14, 2, 1, 1),
+(8, 'Ratón inalámbrico', 'Ratón inalámbrico Logitech para uso cotidiano', '15', 15, 6, 5, 1),
+(9, 'Altavoces Sony', 'Altavoces básicos para audio', '16', 12, 7, 6, 1),
+(10, 'Altavoces stereo pro Pioneer', 'Calidad de sonido excelente', '35', 32, 4, 7, 1);
 
 -- --------------------------------------------------------
 
@@ -291,7 +301,9 @@ INSERT INTO `subcategoria` (`oid`, `nombre`, `categoriaoid`) VALUES
 (2, 'Macbook', 1),
 (3, 'Gamming', 3),
 (4, 'Stereo', 10),
-(5, 'Torre gamming', 21);
+(5, 'Torre gamming', 21),
+(6, 'Cotidiano', 3),
+(7, 'Básicos', 10);
 
 -- --------------------------------------------------------
 
@@ -405,12 +417,12 @@ ALTER TABLE `imagenes`
 -- AUTO_INCREMENT for table `lineapedido`
 --
 ALTER TABLE `lineapedido`
-  MODIFY `oid` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=80;
+  MODIFY `oid` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=83;
 --
 -- AUTO_INCREMENT for table `marcas`
 --
 ALTER TABLE `marcas`
-  MODIFY `oid` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=5;
+  MODIFY `oid` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=8;
 --
 -- AUTO_INCREMENT for table `opinion`
 --
@@ -420,12 +432,12 @@ ALTER TABLE `opinion`
 -- AUTO_INCREMENT for table `producto`
 --
 ALTER TABLE `producto`
-  MODIFY `oid` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=5;
+  MODIFY `oid` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=11;
 --
 -- AUTO_INCREMENT for table `subcategoria`
 --
 ALTER TABLE `subcategoria`
-  MODIFY `oid` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=6;
+  MODIFY `oid` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=8;
 --
 -- AUTO_INCREMENT for table `user`
 --

@@ -4,6 +4,7 @@
 <main>
 
 		<h2><?php echo $producto->nombre ?></h2>
+    <img src="<?php echo base_url(); ?>assets/images/<?php echo $producto->oid?>.png">
 		<p><?php echo "<b>Marca: </b>" .$marca->nombre ?></p>
 		<p><?php echo "<b>Descripción: </b>" .$producto->descripcion ?></p>
 		<p><?php echo "<b>Precio: </b>" .$producto->precio ."€" ?></p>
