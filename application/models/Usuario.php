@@ -56,7 +56,19 @@ class Usuario extends CI_Model {
     );
     $this->db->where('oid',$oid);
     $this->db->update('user',$data);
-    return true;
+    redirect('home');
+  }
+
+  function getDatosByUsername($username){
+    $this -> db -> select('oid, userName, nombre, email, direccion, cuenta');
+    $this -> db -> from('user');
+    $this -> db -> where('userName', $username);
+    $query = $this -> db -> get();
+    $result = $query->result();
+    if($query -> num_rows() == 1)
+      return $query->result();
+    else
+      return false;
   }
 }
 ?>

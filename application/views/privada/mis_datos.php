@@ -5,6 +5,14 @@
   <h2>Cuenta de: <?php echo $username;?></h2>
   <!--<form action="respuesta/script.php" method="POST" name="f1" id="f1"-->
   <!--class="form" role="form">-->
+  <label>Nombre: </label><?php echo " ".$misdatos[0]->nombre; ?>
+  <br>
+  <label>Email: </label><?php echo " ".$misdatos[0]->email; ?>
+  <br>
+  <label>Dirección: </label><?php echo " ".$misdatos[0]->direccion; ?>
+  <br>
+  <label>Cuenta: </label><?php echo " ".$misdatos[0]->cuenta; ?>
+  <br>
   <?php echo validation_errors(); ?>
    <?php echo form_open('registro'); ?>
     <div class=form-group><label for="password1" class="form-label"> Contraseña: </label>
