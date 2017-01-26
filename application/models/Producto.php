@@ -244,7 +244,7 @@ class Producto extends CI_Model {
       $oid = $row->oid;
     }
     return $oid;
-
+  }
   public function anyadirOpinion($oid, $opinion) {
       $data = array(
         'comentario' => $opinion ,
