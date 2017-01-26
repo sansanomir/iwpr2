@@ -25,14 +25,20 @@ class Home extends CI_Controller {
 		}
 		else{
 			 $data['username'] = "invitado";
-			 $data['carro'] = $this->Producto->getProductosCarrito("invitado",2);
+			 $data['carro'] = $this->Producto->getProductosCarrito("invitado");
 			 $this->load->view('publica/principal', $data);
 		}
 	}
 	public function addCarro($oid){
-		if($this->session->userdata('logged_in')){
-		 	$session_data = $this->session->userdata('logged_in');
-			$this->Producto->anyadirAlCarro($oid,1,$session_data['username']);
+	 	$session_data = $this->session->userdata('logged_in');
+		if($this->Producto->anyadirAlCarro($oid,1,$session_data['username'])){
+			$data['producto'] = $this->Producto->listaProductos();
+			$data['direccion'] = "http://localhost:8080/pccomponentes/index.php/home/producto/";
+			$data['direccionAdd'] = "http://localhost:8080/pccomponentes/index.php/home/addCarro/";
+			$session_data = $this->session->userdata('logged_in');
+			$data['username'] = $session_data['username'];
+			$data['carro'] = $this->Producto->getProductosCarrito($session_data['username']);
+			$this->load->view('publica/principal', $data);
 		}
 	}
 	public function producto($oid){

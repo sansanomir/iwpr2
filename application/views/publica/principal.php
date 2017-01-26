@@ -16,6 +16,7 @@
 		<?php foreach ($producto as $prod): ?>
 
 		    <li class="list-group-item">
+
 		        <a href=<?php echo $direccion.$prod->oid; ?>><?php echo $prod->oid."  ".$prod->nombre ."  ".$prod->precio; ?></a>
             <br>
             <a href=<?php echo $direccionAdd.$prod->oid; ?>> Añadir al carrito </a>
@@ -26,13 +27,23 @@
 	  </form>
   </div>
 <h4>Carrito</h4>
-<ul>
-<?php for ($x = 0; $x<count($carro); $x++): ?>
-
-    <li>
-        <?php echo $carro[$x]; ?>
-    </li>
-
-<?php endfor; ?>
-</ul>
+<table>
+  <tr>
+    <th>
+      Producto
+    </th>
+    <th>
+      Cantidad
+    </th>
+<?php foreach ($carro as $clave => $prod ): ?>
+<tr>
+    <th>
+        <?php echo $prod['nombre'] ?>
+    </th>
+    <th>
+      <?php echo $prod['cantidad'] ?>
+    </th>
+</tr>
+<?php endforeach; ?>
+</table>
 </main>
