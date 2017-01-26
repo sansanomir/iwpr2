@@ -2,7 +2,7 @@
 defined('BASEPATH') OR exit('No direct script access allowed');
 ?>
 <?php
-    $this->load->view('inc/cap.php');
+    $this->load->view('inc/bootstrap.php');
 ?>
 
     <main>

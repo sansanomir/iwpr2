@@ -1,4 +1,6 @@
-
+<?php
+    $this->load->view('inc/bootstrap.php');
+?>
 <main class="container">
   <h2>Cuenta de: <?php echo $username;?></h2>
   <!--<form action="respuesta/script.php" method="POST" name="f1" id="f1"-->

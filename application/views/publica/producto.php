@@ -1,3 +1,6 @@
+<?php
+    $this->load->view('inc/bootstrap.php');
+?>
 <main>
 
 		<h2><?php echo $producto->nombre ?></h2>

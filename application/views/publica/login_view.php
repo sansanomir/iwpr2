@@ -1,3 +1,6 @@
+<?php
+    $this->load->view('inc/bootstrap.php');
+?>
 <main class="container">
   <h2>Login:</h2>
   <!--<form action="respuesta/script.php" method="POST" name="f1" id="f1"-->

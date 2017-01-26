@@ -1,14 +1,18 @@
+<?php
+    $this->load->view('inc/bootstrap.php');
+?>
 <main>
   <h2>Productos</h2>
   <?php echo "Hola ".$username;?>
 
   <br>
+  <nav class="navbar navbar-toggleable-md navbar-light bg-faded">
   <?php echo anchor('login/index','Logueate','title="Login"'); ?>
   <?php echo anchor('home/logout','Logout','title="Logout"'); ?>
   <?php echo anchor('home/registro','Registro','title="Registro"'); ?>
   <?php echo anchor('home/misdatos','Mis datos','title="Mis datos"'); ?>
   <?php echo anchor('home/acercade','Sobre nosotros','title="Acercade"'); ?>
-  <br>
+  </nav>
 
   <div class="container">
 	  <ul class="list-group">
