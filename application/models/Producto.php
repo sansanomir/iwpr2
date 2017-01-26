@@ -98,27 +98,6 @@ class Producto extends CI_Model {
       );
       $this->db->insert('lineapedido',$data);
       return true;
-      /*
-      restar stock
-      if ($stockExistente < 1){
-        echo "No quedan unidades";
-      }
-      else{
-        $dataLineapedido = array(
-          'precio' => $precio ,
-          'cantidad' => $cantidad ,
-          'precioTotal' => $precio*$cantidad,
-          'productooid' => $productooid,
-          'carrooid' => $identificadorCarro
-        );
-        $this->db->insert('lineapedido',$dataLineapedido);
-        $cantidadFinal = $stock - $cantidad;
-        $this->db->set('stock',$cantidadFinal,FALSE);
-        $this->db->where('oid',$productooid);
-        $this->db->update('producto');
-        return true;
-      }
-      */
     }
   }
 
@@ -210,6 +189,18 @@ class Producto extends CI_Model {
   public function vaciarCarrito($userName){
     $identificadorCarro;
     $identificadorUsuario = $this->Producto->getOidUsuarioByUserName($userName);
+
+    //restar stock
+    $carroOid = $this->getOidCarro($identificadorUsuario);
+    $this -> db -> select('oid, cantidad, productooid, carrooid');
+    $this -> db -> from('lineapedido');
+    $this -> db -> where('carrooid', $carroOid);
+    $query = $this -> db -> get();
+    $result = $query->result();
+    foreach($result as $row){
+       $this->Producto->restarStock($row->productooid,$row->cantidad);
+    }
+
     $this->db->delete('carro', array('useroid' => $identificadorUsuario));
     $data = array(
       'useroid' => $identificadorUsuario,
@@ -234,6 +225,41 @@ class Producto extends CI_Model {
     $data['volver'] = "http://localhost:8080/pccomponentes/index.php/home/";
     $this->load->view('privada/compraExito', $data);
   }
+
+  public function restarStock($productooid,$cantidad){
+    $nuevoStock = $this->getStock($productooid) - $cantidad;
+    $dataProducto = array('stock' => $nuevoStock);
+    $this->db->set('stock',$nuevoStock,FALSE);
+    $this->db->where('oid',$productooid);
+    $this->db->update('producto');
+  }
+
+  public function getStock($productooid){
+    $stock;
+    $this -> db -> select('oid, nombre, stock');
+    $this -> db -> from('producto');
+    $this -> db -> where('oid', $productooid);
+    $query = $this -> db -> get();
+    $result = $query->result();
+    foreach($result as $row){
+      $stock = $row->stock;
+    }
+    return $stock;
+  }
+
+  public function getOidCarro($useroid){
+    $carro;
+    $this -> db -> select('oid, nombre, carrooid');
+    $this -> db -> from('user');
+    $this -> db -> where('oid', $useroid);
+    $query = $this -> db -> get();
+    $result = $query->result();
+    foreach($result as $row){
+      $carro = $row->carrooid;
+    }
+    return $carro;
+  }
+
   public function getOidUsuarioByUserName($username){
     $this -> db -> select('oid, userName, nombre');
     $this -> db -> from('user');
