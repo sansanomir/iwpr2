@@ -255,5 +255,57 @@ class Producto extends CI_Model {
       $this->db->insert('opinion',$data);
       return true;
   }
+
+  public function listaCategorias() {
+     $this -> db -> select('oid, nombre');
+     $this -> db -> from('categoria');
+     $query = $this -> db -> get();
+     if($query ->num_rows() > -1)
+       return $query->result();
+     else
+       return false;
+  }
+
+  public function getSubcategoriasByOid($oid) {
+      $this -> db -> select('oid, nombre, categoriaoid');
+      $this -> db -> from('subcategoria');
+      $this -> db -> where('categoriaoid', $oid);
+      $query = $this -> db -> get();
+      if($query ->num_rows() > -1)
+        return $query->result();
+      else
+        return false;
+  }
+
+  public function getCategoriaByOid($oid) {
+      $this -> db -> select('oid, nombre');
+      $this -> db -> from('categoria');
+      $this -> db -> where('oid', $oid);
+      $query = $this -> db -> get();
+      if($query ->num_rows() > -1)
+        return $query->result();
+      else
+        return false;
+  }
+  public function getSubCategoriaByOid($oid) {
+      $this -> db -> select('oid, nombre');
+      $this -> db -> from('subcategoria');
+      $this -> db -> where('oid', $oid);
+      $query = $this -> db -> get();
+      if($query ->num_rows() > -1)
+        return $query->result();
+      else
+        return false;
+  }
+  public function getListaProdSub($oid) {
+      $this -> db -> select('oid, nombre, descripcion, precio, stock, subcategoriaoid, marcasoid, ofertaoid');
+      $this -> db -> from('producto');
+      $this -> db -> where('subcategoriaoid', $oid);
+      $query = $this -> db -> get();
+      if($query ->num_rows() > -1)
+        return $query->result();
+      else
+        return false;
+  }
 }
 ?>

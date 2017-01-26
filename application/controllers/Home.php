@@ -14,6 +14,8 @@ class Home extends CI_Controller {
 		$data['producto'] = $this->Producto->listaProductos();
 		$data['direccion'] = "http://localhost:8080/pccomponentes/index.php/home/producto/";
 		$data['direccionAdd'] = "http://localhost:8080/pccomponentes/index.php/home/addCarro/";
+		$data['categorias'] = $this->Producto->listaCategorias();
+		$data['direccionlistaprod'] = "http://localhost:8080/pccomponentes/index.php/home/listaproductos/";
 		if($this->session->userdata('logged_in')){
 		 $session_data = $this->session->userdata('logged_in');
 		 $data['username'] = $session_data['username'];
@@ -90,6 +92,35 @@ class Home extends CI_Controller {
 			$opi->useroid = $nombre[0]->userName;
 		}
 		$this->load->view('publica/producto', $data);
+	}
+
+	public function listaproductos($oid){
+		$categoria = $this->Producto->getCategoriaByOid($oid);
+		$data['categoria'] = $categoria[0];
+		$subcategorias = $this->Producto->getSubcategoriasByOid($oid);
+		$data['subcategorias'] = $subcategorias;
+		$productos;
+		$data['direccion'] = "http://localhost:8080/pccomponentes/index.php/home/producto/";
+		$data['direccionAdd'] = "http://localhost:8080/pccomponentes/index.php/home/addCarro/";
+		$data['direccionlistaprodsub'] = "http://localhost:8080/pccomponentes/index.php/home/listaproductossub/";
+		$data['productos'] = array();
+		foreach ($subcategorias as $subcategoria) {
+				$productos = $this->Producto->getListaProdSub($subcategoria->oid);
+				$data['productos'] = array_merge($data['productos'], $productos);
+			
+		}
+		$this->load->view('publica/listaproductos', $data);
+	}
+	public function listaproductossub($oid){
+		$subcategoria = $this->Producto->getSubCategoriaByOid($oid);
+		$data['subcategoria'] = $subcategoria[0];
+		$data['categorias'] = $this->Producto->listaCategorias();
+		$productos;
+		$data['direccion'] = "http://localhost:8080/pccomponentes/index.php/home/producto/";
+		$data['direccionAdd'] = "http://localhost:8080/pccomponentes/index.php/home/addCarro/";
+		$data['direccionlistaprod'] = "http://localhost:8080/pccomponentes/index.php/home/listaproductos/";
+		$data['productos'] = $this->Producto->getListaProdSub($data['subcategoria']->oid);
+		$this->load->view('publica/listaproductossub', $data);
 	}
 	public function logout(){
 		$this->session->unset_userdata('logged_in');
