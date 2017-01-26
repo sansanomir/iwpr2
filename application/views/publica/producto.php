@@ -8,15 +8,21 @@
 		<br>
 		<br>
 		<h3>Opiniones</h3>
-		<?php print_r($opiniones) ?>
 		<?php foreach ($opiniones as $opi): ?>
 		    <li class="list-group-item">
 		        <?php echo $opi->useroid ?>
-						<br>
-						<?php echo $opi->userName ?>
-						<br>
-						<?php echo $opi->comentario ?>
+				<br>
+				<?php echo $opi->comentario ?>
 		    </li>
 				<br>
 		<?php endforeach; ?>
+		<?php echo validation_errors(); ?>
+		<?php echo form_open('home/addOpinion/'.$producto->oid); ?>
+
+		    <label for="opinion">Opinión</label><br />
+		    <textarea name="opinion"></textarea><br />
+
+		    <input type="submit" name="submit" value="Añadir opinion" />
+
+		</form>
 </main>

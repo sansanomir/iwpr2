@@ -44,6 +44,23 @@ class Home extends CI_Controller {
 			$this->load->view('publica/principal', $data);
 		}
 	}
+
+	public function addOpinion($oid) {
+			if($this->Producto->anyadirOpinion($oid,$this->input->post('opinion'))) {
+				$producto = $this->Producto->getProductoByOid($oid);
+				$data['producto'] = $producto[0];
+				$marcasoid = $data['producto']->marcasoid;
+				$marca = $this->Marca->getMarcaByOid($marcasoid);
+				$data['marca'] = $marca[0];
+				$data['direccion'] = "http://localhost:8080/pccomponentes/index.php/home/addCarro/".$oid;
+				$data['opiniones'] = $this->Producto->getOpinionesByProductoOid($oid);
+				foreach ($data['opiniones'] as $opi) {
+					$nombre = $this->Producto->getNombreUsuarioByOid($opi->useroid);
+					$opi->useroid = $nombre[0]->userName;
+				}
+				$this->load->view('publica/producto', $data);
+			}
+	}
 	public function producto($oid){
 		$producto = $this->Producto->getProductoByOid($oid);
 		$data['producto'] = $producto[0];
@@ -52,6 +69,10 @@ class Home extends CI_Controller {
 		$data['marca'] = $marca[0];
 		$data['direccion'] = "http://localhost:8080/pccomponentes/index.php/home/addCarro/".$oid;
 		$data['opiniones'] = $this->Producto->getOpinionesByProductoOid($oid);
+		foreach ($data['opiniones'] as $opi) {
+			$nombre = $this->Producto->getNombreUsuarioByOid($opi->useroid);
+			$opi->useroid = $nombre[0]->userName;
+		}
 		$this->load->view('publica/producto', $data);
 	}
 	public function logout(){
@@ -84,7 +105,22 @@ class Home extends CI_Controller {
 		$data['volver'] = "http://localhost:8080/pccomponentes/index.php/home/";
 		$this->load->view('publica/noRegistrado',$data);
 	}
-
+	public function addOpinion($oid) {
+			if($this->Producto->anyadirOpinion($oid,$this->input->post('opinion'))) {
+				$producto = $this->Producto->getProductoByOid($oid);
+				$data['producto'] = $producto[0];
+				$marcasoid = $data['producto']->marcasoid;
+				$marca = $this->Marca->getMarcaByOid($marcasoid);
+				$data['marca'] = $marca[0];
+				$data['direccion'] = "http://localhost:8080/pccomponentes/index.php/home/addCarro/".$oid;
+				$data['opiniones'] = $this->Producto->getOpinionesByProductoOid($oid);
+				foreach ($data['opiniones'] as $opi) {
+					$nombre = $this->Producto->getNombreUsuarioByOid($opi->useroid);
+					$opi->useroid = $nombre[0]->userName;
+				}
+				$this->load->view('publica/producto', $data);
+			}
+	}
 	public function registro(){
 		$this->load->view('publica/registro_view');
 	}
