@@ -11,11 +11,11 @@
 		<br>
 		<br>
 		<h3>Opiniones</h3>
-		<?php if (defined('success')) {
-			echo "<div><p> ".$success."</p></div>";
+		<?php if (isset($success)) {
+			echo "<div class='alert alert-success'><p> ".$success."</p></div>";
 		}?>
-		<?php if (defined('error')) {
-			echo "<div><p> ".$error."</p></div>";
+		<?php if (isset($error)) {
+			echo "<div class='alert alert-danger'><p> ".$error."</p></div>";
 		}?>
 		<?php echo form_open('home/addOpinion/'.$producto->oid); ?>
 
