@@ -114,7 +114,7 @@ class Producto extends CI_Model {
       }
     }
     else{
-        $identificadorCarro = $this->getOidUsuarioByUserName("invitado");
+        $identificadorCarro = $this->getOidCarro($this->getOidUsuarioByUserName("invitado"));
     }
     $data = array();
     $oid;
