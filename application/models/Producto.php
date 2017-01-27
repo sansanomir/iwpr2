@@ -25,7 +25,7 @@ class Producto extends CI_Model {
   }
 
   function anyadirAlCarro($productooid,$cantidad,$username){
-    $identificadorUsuario;
+    $identificadorUsuario = $this->Producto->getOidUsuarioByUserName($username);
     if($this->session->userdata('logged_in')){
       $this -> db -> select('oid, userName, carrooid');
       $this -> db -> from('user');
