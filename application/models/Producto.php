@@ -37,7 +37,7 @@ class Producto extends CI_Model {
       }
     }
     else{
-        $identificadorCarro = 2;
+        $identificadorCarro = $this->getOidCarro($identificadorUsuario);
         $identificadorUsuario = 10;
     }
     if($identificadorCarro == null){
@@ -114,7 +114,7 @@ class Producto extends CI_Model {
       }
     }
     else{
-        $identificadorCarro = 2;
+        $identificadorCarro = $this->getOidUsuarioByUserName("invitado");
     }
     $data = array();
     $oid;

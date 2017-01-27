@@ -206,8 +206,13 @@ class Home extends CI_Controller {
 	}
 
 	public function comprar(){
-		$session_data = $this->session->userdata('logged_in');
-		$this->Producto->vaciarCarrito($session_data['username']);
+		if($this->session->userdata('logged_in')){
+			$session_data = $this->session->userdata('logged_in');
+			$this->Producto->vaciarCarrito($session_data['username']);
+		}
+		else{
+			$this->noRegistrado();
+		}
 	}
 	public function noRegistrado(){
 		$data['volver'] = "http://localhost:8080/pccomponentes/index.php/home/";

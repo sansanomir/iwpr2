@@ -3,7 +3,7 @@
 -- http://www.phpmyadmin.net
 --
 -- Host: localhost
--- Generation Time: Jan 26, 2017 at 06:52 PM
+-- Generation Time: Jan 27, 2017 at 09:27 AM
 -- Server version: 10.1.19-MariaDB
 -- PHP Version: 5.5.38
 
@@ -36,9 +36,11 @@ CREATE TABLE `carro` (
 --
 
 INSERT INTO `carro` (`oid`, `useroid`) VALUES
-(2, 10),
-(15, 6),
-(16, 7);
+(33, 11),
+(34, 6),
+(35, 10),
+(36, 7),
+(37, 12);
 
 -- --------------------------------------------------------
 
@@ -59,7 +61,6 @@ INSERT INTO `categoria` (`oid`, `nombre`) VALUES
 (10, 'Altavoces'),
 (4, 'Computadores'),
 (12, 'Inalámbrico'),
-(20, 'Nueva'),
 (1, 'Portátiles'),
 (3, 'Ratones'),
 (2, 'Teclados'),
@@ -98,88 +99,25 @@ CREATE TABLE `lineapedido` (
 --
 
 INSERT INTO `lineapedido` (`oid`, `cantidad`, `precio`, `precioTotal`, `productooid`, `carrooid`) VALUES
-(1, 1, 0, 0, 2, 1),
-(2, 1, 23, 34, 2, 1),
-(3, 1, 13, 321, 3, 1),
-(4, 1, 1000, 1000, 2, 6),
-(5, 1, 34, 34, 3, 6),
-(6, 1, -1, -1, 2, 6),
-(7, 1, -1, -1, 3, 6),
-(8, 1, -1, -1, 2, 6),
-(9, 1, -1, -1, 3, 1),
-(10, 1, -1, -1, 3, 1),
-(11, 1, -1, -1, 3, 1),
-(12, 1, -1, -1, 3, 1),
-(13, 1, -1, -1, 3, 1),
-(14, 1, -1, -1, 3, 1),
-(15, 1, -1, -1, 3, 1),
-(16, 1, -1, -1, 3, 1),
-(17, 1, -1, -1, 3, 1),
-(18, 1, -1, -1, 2, 1),
-(19, 1, -1, -1, 2, 1),
-(20, 1, -1, -1, 2, 1),
-(21, 1, -1, -1, 2, 1),
-(22, 1, -1, -1, 2, 1),
-(23, 1, -1, -1, 2, 1),
-(24, 1, -1, -1, 2, 1),
-(25, 1, -1, -1, 2, 1),
-(26, 1, -1, -1, 2, 1),
-(27, 1, -1, -1, 2, 1),
-(28, 1, -1, -1, 2, 1),
-(29, 1, -1, -1, 2, 1),
-(30, 1, -1, -1, 3, 1),
-(31, 1, -1, -1, 3, 1),
-(32, 1, -1, -1, 3, 1),
-(33, 1, -1, -1, 4, 1),
-(34, 1, -1, -1, 4, 1),
-(35, 1, -1, -1, 3, 1),
-(36, 1, -1, -1, 4, 1),
-(37, 1, -1, -1, 4, 2),
-(38, 1, -1, -1, 2, 2),
-(39, 1, -1, -1, 3, 2),
-(40, 1, -1, -1, 3, 2),
-(41, 1, -1, -1, 3, 2),
-(42, 1, -1, -1, 4, 2),
-(43, 1, -1, -1, 4, 1),
-(44, 1, -1, -1, 4, 1),
-(45, 1, -1, -1, 4, 1),
-(46, 1, -1, -1, 4, 1),
-(47, 1, -1, -1, 4, 1),
-(48, 1, -1, -1, 4, 1),
-(49, 1, -1, -1, 4, 1),
-(50, 1, -1, -1, 4, 1),
-(51, 1, -1, -1, 4, 1),
-(52, 1, -1, -1, 4, 1),
-(53, 1, -1, -1, 4, 1),
-(54, 1, -1, -1, 4, 1),
-(55, 1, -1, -1, 2, 13),
-(56, 1, -1, -1, 2, 13),
-(57, 1, -1, -1, 3, 13),
-(58, 1, -1, -1, 4, 13),
-(59, 1, -1, -1, 4, 2),
-(60, 1, -1, -1, 4, 2),
-(61, 1, -1, -1, 4, 2),
-(62, 1, -1, -1, 4, 2),
-(63, 1, -1, -1, 2, 2),
-(64, 1, -1, -1, 2, 14),
-(65, 1, -1, -1, 3, 14),
-(66, 1, -1, -1, 3, 14),
-(67, 1, -1, -1, 2, 15),
-(68, 1, -1, -1, 2, 15),
-(69, 1, -1, -1, 3, 15),
-(70, 1, -1, -1, 3, 15),
-(71, 1, -1, -1, 3, 15),
-(72, 1, -1, -1, 3, 15),
-(73, 1, -1, -1, 3, 2),
-(74, 1, -1, -1, 2, 16),
-(75, 1, -1, -1, 3, 16),
-(76, 1, -1, -1, 2, 16),
-(77, 1, -1, -1, 4, 16),
-(78, 1, -1, -1, 4, 16),
-(79, 1, -1, -1, 4, 16),
-(80, 1, -1, -1, 9, 2),
-(81, 1, -1, -1, 9, 2),
-(82, 1, -1, -1, 4, 2);
+(213, 1, 34, -1, 3, 15),
+(214, 1, 1000, -1, 2, 15),
+(215, 1, 1000, -1, 2, 15),
+(216, 1, 15, -1, 8, 15),
+(217, 1, 34, -1, 3, 34),
+(218, 1, 700, -1, 4, 34),
+(219, 1, 1300, -1, 6, 34),
+(220, 1, 34, -1, 3, 2),
+(221, 1, 1000, -1, 2, 2),
+(222, 1, 34, -1, 3, 2),
+(223, 1, 34, -1, 3, 2),
+(224, 1, 1000, -1, 2, 2),
+(225, 1, 34, -1, 3, 2),
+(232, 1, 34, -1, 3, 32),
+(233, 1, 1000, -1, 2, 32),
+(234, 1, 34, -1, 3, 36),
+(235, 1, 1000, -1, 2, 36),
+(236, 1, 15, -1, 8, 12),
+(237, 1, 1300, -1, 6, 12);
 
 -- --------------------------------------------------------
 
@@ -245,10 +183,12 @@ CREATE TABLE `opinion` (
 INSERT INTO `opinion` (`oid`, `comentario`, `useroid`, `productooid`, `ok`) VALUES
 (1, 'Muy buena torre', 7, 4, 1),
 (2, 'Me gusta mucho', 6, 4, 0),
-(3, 'bueno', 7, 3, 0),
+(3, 'bueno', 7, 3, 1),
 (4, 'fdas', 7, 3, 0),
 (5, 'Comentario', 6, 4, 0),
-(6, 'Comentario de hsm', 7, 2, 0);
+(6, 'Comentario de hsm', 7, 2, 0),
+(7, 'fsda', 7, 2, 0),
+(8, 'Me encanta', 7, 2, 1);
 
 -- --------------------------------------------------------
 
@@ -272,13 +212,13 @@ CREATE TABLE `producto` (
 --
 
 INSERT INTO `producto` (`oid`, `nombre`, `descripcion`, `precio`, `stock`, `subcategoriaoid`, `marcasoid`, `ofertaoid`) VALUES
-(2, 'Lenovo thinkpad', 'Macnífico portátil', '1000', 34, 1, 2, 0),
-(3, 'Ratón msi', 'Ratón para gamming', '34', -1, 3, 3, 0),
-(4, 'Torre HP', 'Magnifica tore blablabla', '700', 91, 5, 4, 0),
+(2, 'Lenovo thinkpad', 'Macnífico portátil', '1000', 13, 1, 2, 0),
+(3, 'Ratón msi', 'Ratón para gamming', '34', 1226, 3, 3, 0),
+(4, 'Torre HP', 'Magnifica tore blablabla', '700', 50, 5, 4, 0),
 (6, 'Macbook Pro', 'Portátil de Apple de última generación?', '1300', 14, 2, 1, 1),
-(8, 'Ratón inalámbrico', 'Ratón inalámbrico Logitech para uso cotidiano', '15', 15, 6, 5, 1),
-(9, 'Altavoces Sony', 'Altavoces básicos para audio', '16', 12, 7, 6, 1),
-(10, 'Altavoces stereo pro Pioneer', 'Calidad de sonido excelente', '35', 32, 4, 7, 1);
+(8, 'Ratón inalámbrico', 'Ratón inalámbrico Logitech para uso cotidiano', '15', 14, 6, 5, 1),
+(9, 'Altavoces Sony', 'Altavoces básicos para audio', '16', 10, 7, 6, 1),
+(10, 'Altavoces stereo pro Pioneer', 'Calidad de sonido excelente', '35', 19, 4, 7, 1);
 
 -- --------------------------------------------------------
 
@@ -327,13 +267,12 @@ CREATE TABLE `user` (
 --
 
 INSERT INTO `user` (`oid`, `userName`, `password`, `nombre`, `email`, `direccion`, `cuenta`, `carrooid`) VALUES
-(2, 'pep', 'pep', 'pep', 'pep', 'pep', 'pep', NULL),
-(4, 'pepe', 'pepe', 'lmsadml', 'mlfdaslm', 'dfasm', 'fdasm', NULL),
-(6, 'juan', 'a94652aa97c7211ba8954dd15a3cf838', 'Juanito', 'juanito@gmail.com', 'Calle roja', '1324', 15),
-(7, 'hsm', '75bc08308363144baf3b29af7c580e0b', 'Héctor Sansano', 'sansanomiralles@gmail.com', 'Calle roja', '9123', 16),
+(6, 'juan', 'a94652aa97c7211ba8954dd15a3cf838', 'Juanito', 'juanito@gmail.com', 'Calle roja', '1324', 34),
+(7, 'hsm', '75bc08308363144baf3b29af7c580e0b', 'Héctor Sansano Miralles', 'sansanomiralles@gmail.com', 'Calle amarilla', '52345236', 36),
 (8, 'admin', '21232f297a57a5a743894a0e4a801fc3', 'Administrador', 'admin@pccomponentes.com', 'Calle amarilla', '452345623', NULL),
-(9, '', 'd41d8cd98f00b204e9800998ecf8427e', '', '', '', '', NULL),
-(10, 'invitado', '', '', '', '', '', 2);
+(10, 'invitado', '', '', '', '', '', 35),
+(11, 'pepe', '926e27eecdbc7a18858b3798ba99bddd', 'Jose ', 'jose@gmail.com', 'Calle roja', '34214', 11),
+(12, 'pedro', 'c6cc8094c2dc07b700ffcc36d64e2138', 'Pedro Martinez', 'pedro@gmail.com', 'Calle eduardo', '3452151', 12);
 
 --
 -- Indexes for dumped tables
@@ -402,7 +341,7 @@ ALTER TABLE `user`
 -- AUTO_INCREMENT for table `carro`
 --
 ALTER TABLE `carro`
-  MODIFY `oid` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=17;
+  MODIFY `oid` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=38;
 --
 -- AUTO_INCREMENT for table `categoria`
 --
@@ -417,7 +356,7 @@ ALTER TABLE `imagenes`
 -- AUTO_INCREMENT for table `lineapedido`
 --
 ALTER TABLE `lineapedido`
-  MODIFY `oid` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=83;
+  MODIFY `oid` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=238;
 --
 -- AUTO_INCREMENT for table `marcas`
 --
@@ -427,7 +366,7 @@ ALTER TABLE `marcas`
 -- AUTO_INCREMENT for table `opinion`
 --
 ALTER TABLE `opinion`
-  MODIFY `oid` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=7;
+  MODIFY `oid` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=9;
 --
 -- AUTO_INCREMENT for table `producto`
 --
@@ -442,7 +381,7 @@ ALTER TABLE `subcategoria`
 -- AUTO_INCREMENT for table `user`
 --
 ALTER TABLE `user`
-  MODIFY `oid` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=11;
+  MODIFY `oid` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=13;
 /*!40101 SET CHARACTER_SET_CLIENT=@OLD_CHARACTER_SET_CLIENT */;
 /*!40101 SET CHARACTER_SET_RESULTS=@OLD_CHARACTER_SET_RESULTS */;
 /*!40101 SET COLLATION_CONNECTION=@OLD_COLLATION_CONNECTION */;
