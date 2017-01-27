@@ -361,5 +361,14 @@ class Producto extends CI_Model {
     }
     return $precio;
   }
+
+  public function vaciarCarritoCesta($username){
+    $carrooid = $this->Producto->getOidCarro($this->Producto->getOidUsuarioByUserName($username));
+    $this->db->delete('lineapedido', array('carrooid' => $carrooid));
+    $data = array(
+      'carrooid' => $carrooid,
+    );
+    return true;
+  }
 }
 ?>

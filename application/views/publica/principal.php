@@ -9,13 +9,13 @@
          <a href="http://localhost:8080/pccomponentes/index.php/home"><img style='height: 100px; width: 100px;' src="<?php echo base_url(); ?>assets/images/logo.svg"></a>
       </div>
       <div class="container col-md-4">
-      
-        <h2>Productos</h2>
-      
-      </div>
-      
 
-      <div class="container col-md-4">  
+        <h2>Productos</h2>
+
+      </div>
+
+
+      <div class="container col-md-4">
           <nav class="navbar navbar-toggleable-md navbar-light bg-faded">
           <?php echo "Hola ".$username;?><br>
           <?php echo anchor('login/index','Logueate','title="Login"'); ?>
@@ -54,7 +54,7 @@
             <img style='height: 300px; width: 300px;' src="<?php echo base_url(); ?>assets/images/<?php echo $prod->oid?>.png">
           </a>
   		    <li class="list-group-item">
-              
+
   		        <?php echo "<h4>".$prod->nombre ."</h4>"?>
               <?php echo "<p>Precio: ".$prod->precio."€</p>" ?>
               <?php echo "<p>Disponibles: ".$prod->stock."</p>" ?>
@@ -71,12 +71,21 @@
     <table>
       <tr>
         <th>
+          <a href=<?php echo $direccionComprar; ?>> Comprar! </a>
+        </th>
+        <th>
+          <a href=<?php echo $direccionVaciar; ?>> Vaciar </a>
+        </th>
+      </tr>
+      <tr>
+        <th>
           Producto
         </th>
         <th>
           Cantidad
         </th>
       </tr>
+
     <?php foreach ($carro as $clave => $prod ): ?>
     <tr>
         <th>
@@ -95,7 +104,6 @@
         <?php echo $precioCarrito." €"?>
       </th>
     </tr>
-      <a href=<?php echo $direccionComprar; ?>> Comprar! </a>
     </form>
     </table>
   </div>
