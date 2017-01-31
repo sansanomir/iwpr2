@@ -15,12 +15,12 @@ defined('BASEPATH') OR exit('No direct script access allowed');
 		    	<h1><?php echo "Acerca de";?></h1>
 		    </div>
 		</div>
-     
-        <ul>
-            <li>Youchen Zhou</li>
-            <li>Héctor Sansano</li>
+     <div class="container">
+        <ul class="list-group">
+            <li class="list-group-item">Youchen Zhou</li>
+            <li class="list-group-item">Héctor Sansano</li>
         </ul>
-
+        </div>
     </main>
 <?php
     $this->load->view('inc/pie.php');

@@ -10,8 +10,10 @@
 			<h2>No registrado</h2>
 		</div>
 	</div>
+    <div class="container">
 		<h4>Registrese para comprar en nuestra tienda</h4>
     <a href= <?php echo $volver?>> Atrás </a>
+    </div>
 </main>
 
 <?php

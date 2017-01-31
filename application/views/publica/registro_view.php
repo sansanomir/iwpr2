@@ -56,6 +56,9 @@
   			maxlength="200" id="cuenta"
   			class="form-control"/>
   	</div>
+     <?php if (isset($error)) {
+				echo "<div class='alert alert-danger'><p> ".$error."</p></div>";
+			}?>
     <input type="submit" class="btn btn-primary" value="Registro" id="btnRegistro" name="boton">
   </form>
 </main>

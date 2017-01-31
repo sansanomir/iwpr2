@@ -26,6 +26,12 @@
   			maxlength="200" placeholder="****" id="password"
   			class="form-control"/>
   	</div>
+    <?php if (isset($error)) {
+				echo "<div class='alert alert-danger'><p> ".$error."</p></div>";
+			}?>
+    <?php if (isset($success)) {
+				echo "<div class='alert alert-success'><p> ".$success."</p></div>";
+			}?>
   	<input type="submit" class="btn btn-primary" value="Login" id="btnEnviar" name="boton">
     <input type="submit" class="btn btn-primary" value="Registro" id="btnRegistro" name="boton">
   </form>

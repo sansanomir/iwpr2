@@ -31,16 +31,19 @@ class Registro extends CI_Controller {
         else if ($this->input->post('boton') == "Registro"){
           if(strcmp($contra1,$contra2)==0){
             if($this->Usuario->registro($username,$contra1,$nombre,$email,$direccion,$cuenta)){
-                $this->load->view('publica/login_view.php');
+                $data['success'] = 'Usuario registrado correctamente.';
+                $this->load->view('publica/login_view.php', $data);
             }
             else{
               //Ya existe el user
-              $this->load->view('publica/registro_view.php');
+                $data['error'] = 'Campos incorrectos';
+              $this->load->view('publica/registro_view.php', $data);
             }
 
           }
           else{
-            $this->load->view('publica/registro_view.php');
+              $data['error'] = 'Campos incorrectso';
+            $this->load->view('publica/registro_view.php', $data);
           }
         }
       }

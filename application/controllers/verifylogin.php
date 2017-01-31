@@ -15,7 +15,8 @@ class VerifyLogin extends CI_Controller {
      $nombre = $this->input->post('username');
      $contra = $this->input->post('password');
      if($nombre=="" || $contra==""){
-       $this->load->view('publica/login_view.php');
+         $data['error'] = 'Usuario y/o contraseña vacía';
+       $this->load->view('publica/login_view.php', $data);
      }
      else {
        $result = $this->Usuario->login($nombre, $contra);
@@ -40,16 +41,18 @@ class VerifyLogin extends CI_Controller {
            $this->load->view('home/index');
          }
          else{
+               $data['success'] = 'Usuario registrado correctamente.';
            $data['producto'] = $this->Producto->listaProductos();
            $data['username'] = $session_data['username'];
            $data['carro'] = $this->Producto->getProductosCarrito($session_data['username'],$session_data['carrooid']);
-           redirect('home','refresh');
+           redirect('home','refresh',$data);
            //$this->load->view('publica/principal.php',$data);
            return true;
          }
        }
        else{
-         $this->load->view('publica/login_view.php');
+           $data['error'] = 'Usuario y/o contraseña incorrecto';
+         $this->load->view('publica/login_view.php', $data);
        }
      }
    }

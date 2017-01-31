@@ -11,9 +11,10 @@
 	    	<h2><Enhorabuena</h2>
 	    </div>
 	  </div>
-		
+		<div class="container">
 		<h4>Te enviaremos la compra a casa.</h4>
     <a href= <?php echo $volver?>> Atrás </a>
+        </div>
 </main>
 
 <?php

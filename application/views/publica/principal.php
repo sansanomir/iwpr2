@@ -16,12 +16,20 @@
 
 
       <div class="container col-md-4">
+            <?php if (isset($success)) {
+				echo "<div class='alert alert-success'><p> ".$success."</p></div>";
+			}?>
           <nav class="navbar navbar-toggleable-md navbar-light bg-faded">
-          <?php echo "Hola ".$username;?><br>
-          <?php echo anchor('login/index','Logueate','title="Login"'); ?>
-          <?php echo anchor('home/logout','Logout','title="Logout"'); ?>
-          <?php echo anchor('home/registro','Registro','title="Registro"'); ?>
-          <?php echo anchor('home/misdatos','Mis datos','title="Mis datos"'); ?>
+          <?php echo "<h2>Hola ".$username."</h2>";?><br>
+        <?php if ($username == 'invitado') {
+           echo anchor('login/index','Login','title="Login"'); }
+        else {
+              
+           echo anchor('home/logout','Logout','title="Logout"');}; ?>
+          <?php if ($username == 'invitado') {
+            echo anchor('home/registro','Registro','title="Registro"'); }
+              else {
+          echo anchor('home/misdatos','Mis datos','title="Mis datos"');}; ?>
           <?php echo anchor('home/acercade','Sobre nosotros','title="Acercade"'); ?>
           </nav>
       </div>
@@ -68,7 +76,7 @@
   </div class="container col-md-12">
   <div class="container col-md-2">
     <h4 style='font-size: 50px;'>Carrito <span class="glyphicon glyphicon-shopping-cart" ></span></h4>
-    <table>
+    <table class="table">
       <tr>
         <th>
           <a href=<?php echo $direccionComprar; ?>> Comprar! </a>
